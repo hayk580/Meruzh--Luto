@@ -27,8 +27,8 @@ class Game {
         }
       this.background = new Background(this.ctx, this.levels.level12)
   
-      this.bag = new Bag(this.ctx)
-      this.shaurma = new Shaurma(this.ctx)
+      this.bag = new Bag(this.ctx, 2600, 600)
+      this.shaurma = new Shaurma(this.ctx, this.bag.x, this.bag.y - 20)
       this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
       this.alvardTati = new Alvard()
       this.bichok = new Fireball()
@@ -154,19 +154,19 @@ class Game {
   
     drowCOIN(x,tmp) {
       
-      this.drawCoin(x, 400, tmp)
+      this.drawCoin(x, 700, tmp)
     }
   
     drawCoin(x, y, tmp) {
       if (tmp == 1) {
         //this.coins.push(new Coin(this.ctx, x + (1*80) , y-(50) )) 
         this.coins.push(new Coin(this.ctx, x + (2 * 80) + 10, y - (100)))
-        this.coins.push(new Coin(this.ctx, x + (3 * 80), y - (150)))
-        this.coins.push(new Coin(this.ctx, x + (4 * 80), y - (200)))
-        this.coins.push(new Coin(this.ctx, x + (5 * 80), y - (200)))
-        this.coins.push(new Coin(this.ctx, x + (6 * 80), y - (150)))
-        this.coins.push(new Coin(this.ctx, x + (7 * 80), y - (100)))
-        this.coins.push(new Coin(this.ctx, x + (8 * 80), y - (50)))
+        this.coins.push(new Coin(this.ctx, x + (3 * 80), y - (110)))
+        this.coins.push(new Coin(this.ctx, x + (4 * 80), y - (120)))
+        this.coins.push(new Coin(this.ctx, x + (5 * 80), y - (120)))
+        this.coins.push(new Coin(this.ctx, x + (6 * 80), y - (120)))
+        this.coins.push(new Coin(this.ctx, x + (11 * 80), y - (50)))
+        this.coins.push(new Coin(this.ctx, x + (12 * 80), y - (50)))
         
       }
       if (tmp == 2) {
@@ -246,6 +246,7 @@ class Game {
       this.ctx.font = '18px Arial'
       this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
       this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
+      this.ctx.fillText(`ճշտի բալանս: ${this.mario.tuxtcount}`, 30, 75)
       this.ctx.restore()
     }
   
@@ -273,6 +274,7 @@ class Game {
         this.masiviBisetka.move(this.mario.x)
         this.kims.forEach(kim => kim.move())
         this.bag.move()
+        this.shaurma.moveright()
       }
       this.mario.move()
     }
@@ -288,32 +290,56 @@ class Game {
       this.blocks.forEach(blocks => blocks.onKeyEvent(event))
       this.papers.forEach(papers => papers.onKeyEvent(event))
       this.masiviBisetka.onKeyEvent(event)
+      this.shaurma.onKeyEvent(event)
     }
   
     checkCollisions() {
       if (this.drow) {
           this.drow = false
-          this.drowGreade(100, 1)
           this.drowGreade(1000, 1)
-          this.drowGreade(3500, 2)
+         // this.drowGreade(1500, 1)
+          this.drowGreade(2000, 2)
+          this.drowGreade(3500, 1)
           this.drowGreade(4000, 2)
-          this.drowGreade(4500, 1)
+          //this.drowGreade(4500, 1)
           this.drowGreade(6000, 2)
           this.drowGreade(7000, 1)
           this.drowGreade(8000, 2)
           this.drowGreade(8700, 1)
-          this.drowGreade(9400, 2)
+//this.drowGreade(9400, 2)
           this.drowGreade(10200, 1)
           this.drowGreade(10900, 2)
           this.drowGreade(11600, 1)
-          this.drowGreade(12500, 2)
+       //   this.drowGreade(12500, 2)
           this.drowGreade(13100, 2)
           this.drowGreade(13700, 1)
           this.drowGreade(14500, 2)
-          this.drowGreade(15600, 2)
+        //  this.drowGreade(15600, 2)
           this.drowGreade(16100, 1)
           this.drowGreade(17300, 1)
+       //   this.drowGreade(17900, 1)
+          this.drowGreade(18300, 2)
+          this.drowGreade(18800, 1)
+          this.drowGreade(19500, 2)
+          this.drowGreade(20200, 1)
+          this.drowGreade(22800, 1)
+          this.drowGreade(23800, 1)
+          this.drowGreade(24800, 1)
+          this.drowGreade(18900, 1)
+          this.drowGreade(19900, 2)
+          this.drowGreade(20900, 1)
+          this.drowGreade(22900, 1)
+          this.drowGreade(23900, 1)
+          this.drowGreade(24900, 1)
+          this.drowGreade(25900, 1)
+          this.drowGreade(26900, 2)
+          this.drowGreade(27900, 2)
+          this.drowGreade(28900, 1)
+          this.drowGreade(29900, 1)
+          this.drowGreade(30900, 1)
+          this.drowGreade(31900, 1)
           
+         
           for (let i = 500; i < MASIV_WIDTH; i += 800) {
             this.drowCOIN(i,1);
           }
@@ -367,13 +393,6 @@ class Game {
       const restPapers = this.papers.filter(paper => !this.mario.collidesWith(paper))
       this.papers.forEach(paper => {
           if (this.mario.collidesWith(paper)) {
-              this.drawInterval = false
-            // this.paperAnimation = setInterval(() => {
-            //   paper.animate(this.mario.x, this.mario.y)
-            // });
-            // setTimeout(() => {
-            //   clearInterval(this.paperAnimation)
-            // }, 2000);
             this.sounds.open_tuxt_sound.play()
           openModal()
           }
