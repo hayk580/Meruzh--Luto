@@ -66,9 +66,9 @@ class Mario {
 
   draw() {
     if (this.isReady()) {
-      if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
-      if (this.flag == 1) { this.sprite.src = './assets/img/meruzh.png' }
-      if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
+      if (this.flag == 0) { this.sprite.src = './assets/img/l1.png' }
+      if (this.flag == 1) { this.sprite.src = './assets/img/l2.png' }
+      if (this.flag == 2) { this.sprite.src = './assets/img/l3.png' }
       this.ctx.drawImage(
         this.sprite,
         this.sprite.horizontalFrameIndex * this.sprite.frameWidth,
@@ -197,11 +197,11 @@ class Mario {
     else {
       this.resetAnimation()
     }
-    
+
   }
 
   resetAnimation() {
-    
+
     if (this.turn == true) {
       this.sprite.horizontalFrameIndex = 0
       this.sprite.verticalFrameIndex = 0
@@ -283,7 +283,7 @@ class Mario {
 
   }
 
- 
+
 
   collidesWith(element) {
     return this.x < element.x + element.width &&
@@ -321,7 +321,7 @@ class Mario {
     if (this.x < element.x + element.width &&
       this.x + this.width > element.x &&
       this.y < element.y + element.height &&
-      this.y + this.height  > element.y) {
+      this.y + this.height > element.y) {
       return "true"
     }
     else {
@@ -333,7 +333,7 @@ class Mario {
     if (this.x < element.x + element.width &&
       this.x + this.width > element.x &&
       this.y < element.y + element.height &&
-      this.y + this.height  > element.y) {
+      this.y + this.height > element.y) {
       return "true"
     }
     else {

@@ -16,17 +16,18 @@ class Mario {
     this.height = 0
     this.turn = true
     this.bichokcount = 20
-    this.meeting=false
+    this.meeting = false
 
     this.sprite = new Image()
-    if (this.flag == 1) { this.sprite.src = './assets/img/normal-meruzh.png' }
-    if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
-    if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
-    if (this.meeting) {this.sprite.src = './assets/img/love.png'
-    this.sprite.horizontalFrames =1
-    this.sprite.verticalFrames = 1
-  }
-    this.sprite.src = './assets/img/normal-meruzh.png'
+    if (this.flag == 1) { this.sprite.src = './assets/img/l1.png' }
+    if (this.flag == 0) { this.sprite.src = './assets/img/l2.png' }
+    if (this.flag == 2) { this.sprite.src = './assets/img/l3.png' }
+    if (this.meeting) {
+      this.sprite.src = './assets/img/love.png'
+      this.sprite.horizontalFrames = 1
+      this.sprite.verticalFrames = 1
+    }
+    this.sprite.src = './assets/img/l1.png'
     this.sprite.isReady = false
     this.sprite.horizontalFrames = 4
     this.sprite.verticalFrames = 4
@@ -71,30 +72,46 @@ class Mario {
 
   draw() {
     if (this.isReady()) {
-      if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
-      if (this.flag == 1) { this.sprite.src = './assets/img/meruzh.png' }
-      if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
-      if (this.meeting) {this.sprite.src = './assets/img/love.png'
-    this.sprite.horizontalFrames =1
-    this.sprite.verticalFrames = 1
-  }
-      if(!this.meeting){
-      this.ctx.drawImage(
-        this.sprite,
-        this.sprite.horizontalFrameIndex * this.sprite.frameWidth,
-        this.sprite.verticalFrameIndex * this.sprite.frameHeight,
-        this.sprite.frameWidth,
-        this.sprite.frameHeight,
-        this.x,
-        this.y,
-        this.width,
-        this.height,
-        this.turn
-      )
-    }
-    else {
-      this.ctx.drawImage(this.sprite , this.x, this.y-150)
-    }
+
+
+      if (localStorage.getItem('person') == "meruzh") {
+        if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
+        if (this.flag == 1) { this.sprite.src = './assets/img/normal-meruzh.png' }
+        if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
+      }
+
+
+
+      else if (localStorage.getItem('person') == "luto") {
+        if (this.flag == 0) { this.sprite.src = './assets/img/l1.png' }
+        if (this.flag == 1) { this.sprite.src = './assets/img/l2.png' }
+        if (this.flag == 2) { this.sprite.src = './assets/img/l3.png' }
+      }
+
+
+
+      if (this.meeting) {
+        this.sprite.src = './assets/img/love.png'
+        this.sprite.horizontalFrames = 1
+        this.sprite.verticalFrames = 1
+      }
+      if (!this.meeting) {
+        this.ctx.drawImage(
+          this.sprite,
+          this.sprite.horizontalFrameIndex * this.sprite.frameWidth,
+          this.sprite.verticalFrameIndex * this.sprite.frameHeight,
+          this.sprite.frameWidth,
+          this.sprite.frameHeight,
+          this.x,
+          this.y,
+          this.width,
+          this.height,
+          this.turn
+        )
+      }
+      else {
+        this.ctx.drawImage(this.sprite, this.x, this.y - 150)
+      }
 
       this.sprite.drawCount++
       this.bullets.forEach(bullet => bullet.draw())
