@@ -76,10 +76,9 @@ class Mario {
 
       if (localStorage.getItem('person') == "meruzh") {
         if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
-        if (this.flag == 1) { this.sprite.src = './assets/img/normal-meruzh.png' }
+        if (this.flag == 1) { this.sprite.src = './assets/img/normal_meruzh.png' }
         if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
 
-        this.ctx.fillRect(20, 20, 150, 100);
 
       }
 
