@@ -218,6 +218,7 @@ class Game {
 
 
   start() {
+    localStorage.setItem("level", "index10.html")
 
     if (!this.drawInterval) {
 
@@ -298,7 +299,7 @@ class Game {
     this.ctx.font = '18px Arial'
     this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
     this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
-    this.ctx.fillText(`ճշտի բալանս: ${this.mario.tuxtcount}`, 30, 75)
+    this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     this.ctx.restore()
   }
 
@@ -441,6 +442,11 @@ class Game {
     this.papers.forEach(paper => {
       if (this.mario.collidesWith(paper)) {
         this.mario.tuxtcount++
+        this.mario.tuxtcount++
+        let c = sessionStorage.getItem("tuxtcount")
+        c++
+        sessionStorage.setItem("tuxtcount", c)
+
         this.sounds.open_tuxt_sound.play()
         openModal()
       }
@@ -511,6 +517,10 @@ class Game {
         this.sounds.theme.pause()
         this.sounds.theme2.play()
         this.mario.isDie = true
+        setTimeout(() => {
+          window.location.href = "gameover.html"
+
+        }, 2000)
 
         this.mario.animateDie()
         this.sounds.tati.play()

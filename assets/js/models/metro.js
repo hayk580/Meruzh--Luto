@@ -26,7 +26,7 @@ class Game {
     }
     this.background = new Background(this.ctx, this.levels.level6)
 
-  
+
     this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
     this.alvardTati = new Alvard()
     this.bichok = new Fireball()
@@ -36,7 +36,7 @@ class Game {
     this.paperAnimation = undefined
     this.paperPoints = 0
     this.bag = new Bag(this.ctx, 8300, 600)
-    this.shaurma = new Shaurma(this.ctx, this.bag.x+20, this.bag.y - 10)
+    this.shaurma = new Shaurma(this.ctx, this.bag.x + 20, this.bag.y - 10)
 
     this.coins = [
 
@@ -52,7 +52,7 @@ class Game {
       new Alvard(this.ctx, this.mario.x + 500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 1000, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 1700, this.mario.y),
-      new Alvard(this.ctx, this.mario.x +2500, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 2500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 3100, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 3200, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 3300, this.mario.y),
@@ -66,7 +66,7 @@ class Game {
       new Alvard(this.ctx, this.mario.x + 13900, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 14100, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 15900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x +16500, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 16500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 16900, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 17500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 18400, this.mario.y),
@@ -74,7 +74,7 @@ class Game {
       new Alvard(this.ctx, this.mario.x + 18200, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 18500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 15200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x +13500, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 13500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 13900, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 14500, this.mario.y),
       new Alvard(this.ctx, this.mario.x + 15200, this.mario.y),
@@ -138,26 +138,26 @@ class Game {
       tati: new Audio('./assets/sound/tati.wav'),
       kim_come: new Audio('./assets/sound/kimcome.wav'),
       inteligent_sound: new Audio('./assets/sound/Male Anger Scream.mp3'),
-      open_tuxt_sound:new Audio('./assets/sound/Tuxt bacel.wav')
+      open_tuxt_sound: new Audio('./assets/sound/Tuxt bacel.wav')
 
     }
   }
 
   drowGreade(x, tmp) {
-      if (tmp == 1) {
-          this.drawWall(x, 30, 1)
-          this.drawWall(x + 50, 50, 1)
-          this.drawWall(x + 100, 70, 1)
-          this.drawWall(x + 150, 90, 1)
-          this.drawWall(x + 200, 110, 1)
-          this.drawWall(x + (50 * 8), 30, 1)
-          this.drawWall(x + 50 + (50 * 6), 50, 1)
-          this.drawWall(x + 100 + (50 * 4), 70, 1)
-          this.drawWall(x + 150 + (50 * 2), 90, 1)
-        }
-        if (tmp == 2) {
-          this.drawWall(x, 30, 10)
-        }
+    if (tmp == 1) {
+      this.drawWall(x, 30, 1)
+      this.drawWall(x + 50, 50, 1)
+      this.drawWall(x + 100, 70, 1)
+      this.drawWall(x + 150, 90, 1)
+      this.drawWall(x + 200, 110, 1)
+      this.drawWall(x + (50 * 8), 30, 1)
+      this.drawWall(x + 50 + (50 * 6), 50, 1)
+      this.drawWall(x + 100 + (50 * 4), 70, 1)
+      this.drawWall(x + 150 + (50 * 2), 90, 1)
+    }
+    if (tmp == 2) {
+      this.drawWall(x, 30, 10)
+    }
   }
   drawWall(x, y, count) {
     for (let i = 1; i <= count; --count) {
@@ -174,25 +174,27 @@ class Game {
   }
 
   drawCoin(x, y, tmp) {
-      if (tmp == 1) {
-          //this.coins.push(new Coin(this.ctx, x + (1*80) , y-(50) )) 
-          this.coins.push(new Coin(this.ctx, x + (2 * 80) + 10, y - (100)))
-          this.coins.push(new Coin(this.ctx, x + (3 * 80), y - (150)))
-          this.coins.push(new Coin(this.ctx, x + (4 * 80), y - (200)))
-          this.coins.push(new Coin(this.ctx, x + (5 * 80), y - (200)))
-          this.coins.push(new Coin(this.ctx, x + (6 * 80), y - (150)))
-          this.coins.push(new Coin(this.ctx, x + (7 * 80), y - (100)))
-          this.coins.push(new Coin(this.ctx, x + (8 * 80), y - (50)))
-        }
-        if (tmp == 2) {
-          for (let i = 0; i < 10; ++i) {
-            this.coins.push(new Coin(this.ctx, x + (i * 50), y - 20))
-          }
-        }
+    if (tmp == 1) {
+      //this.coins.push(new Coin(this.ctx, x + (1*80) , y-(50) )) 
+      this.coins.push(new Coin(this.ctx, x + (2 * 80) + 10, y - (100)))
+      this.coins.push(new Coin(this.ctx, x + (3 * 80), y - (150)))
+      this.coins.push(new Coin(this.ctx, x + (4 * 80), y - (200)))
+      this.coins.push(new Coin(this.ctx, x + (5 * 80), y - (200)))
+      this.coins.push(new Coin(this.ctx, x + (6 * 80), y - (150)))
+      this.coins.push(new Coin(this.ctx, x + (7 * 80), y - (100)))
+      this.coins.push(new Coin(this.ctx, x + (8 * 80), y - (50)))
+    }
+    if (tmp == 2) {
+      for (let i = 0; i < 10; ++i) {
+        this.coins.push(new Coin(this.ctx, x + (i * 50), y - 20))
+      }
+    }
   }
 
 
   start() {
+    localStorage.setItem("level", "index6.html")
+
     if (!this.drawInterval) {
       this.sounds.theme.play()
       this.drawInterval = setInterval(() => {
@@ -203,7 +205,7 @@ class Game {
         this.inteligent.forEach(inteligent => {
           if (inteligent.afraid) {
             inteligent.moveL()
-            if(this.intel_sound_count === false){
+            if (this.intel_sound_count === false) {
               this.intel_sound_count = true
               this.sounds.inteligent_sound.play()
 
@@ -236,7 +238,7 @@ class Game {
       this.bag.draw()
     }
     this.ctx.font = '18px Arial'
-    this.ctx.fillText(`ճշտի բալանս: ${this.mario.tuxtcount}`, 30, 75)
+    this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     if (this.shaurma.flag) {
       this.shaurma.draw()
       this.shaurma.move(this.canvas.height - 50)
@@ -276,10 +278,10 @@ class Game {
         this.inteligent.forEach(inteligent => inteligent.moveLeft())
       }
       else {
-        this.inteligent.forEach(inteligent =>  {
+        this.inteligent.forEach(inteligent => {
           inteligent.moveRigth()
-          if(inteligent.x - this.mario.x <= 700) {
-             this.intel_sound_count = false
+          if (inteligent.x - this.mario.x <= 700) {
+            this.intel_sound_count = false
           }
         })
       }
@@ -311,44 +313,43 @@ class Game {
 
   checkCollisions() {
 
-    if (this.points>=50)
-    {
-      this.points=0
-      this.mario.bichokcount+=5
+    if (this.points >= 50) {
+      this.points = 0
+      this.mario.bichokcount += 5
       this.sounds.add_bichok.play()
     }
-    
+
     if (this.drow) {
       if (this.drow) {
-          this.drow = false
-          this.drowGreade(400, 1)
-          this.drowGreade(1000, 1)
-          this.drowGreade(2000, 2)
-          this.drowGreade(2500, 1)
-          this.drowGreade(3150, 2)
-          this.drowGreade(4200, 1)
-          this.drowGreade(5000, 2)
-          this.drowGreade(5500, 2)
-          this.drowGreade(6000, 1)
-          this.drowGreade(6800, 2)
-          this.drowGreade(7200, 1)
-          this.drowGreade(8000, 2)
-          this.drowGreade(8500, 1)
-          this.drowGreade(9200, 2)
-          this.drowGreade(10400, 1)
-          this.drowGreade(11500, 2)
-          this.drowGreade(12900, 1)
-          this.drowGreade(13700, 1)
-          this.drowGreade(14300, 2)
-          this.drowGreade(15000, 1)
-          this.drowGreade(16000, 1)
-          this.drowGreade(17900, 2)
-          this.drowGreade(18500, 2)
-          this.drowGreade(19000, 2)
-          for (let i = 500; i < 19500; i += 1781) {
-            this.drowCOIN(i,1);
-          }
+        this.drow = false
+        this.drowGreade(400, 1)
+        this.drowGreade(1000, 1)
+        this.drowGreade(2000, 2)
+        this.drowGreade(2500, 1)
+        this.drowGreade(3150, 2)
+        this.drowGreade(4200, 1)
+        this.drowGreade(5000, 2)
+        this.drowGreade(5500, 2)
+        this.drowGreade(6000, 1)
+        this.drowGreade(6800, 2)
+        this.drowGreade(7200, 1)
+        this.drowGreade(8000, 2)
+        this.drowGreade(8500, 1)
+        this.drowGreade(9200, 2)
+        this.drowGreade(10400, 1)
+        this.drowGreade(11500, 2)
+        this.drowGreade(12900, 1)
+        this.drowGreade(13700, 1)
+        this.drowGreade(14300, 2)
+        this.drowGreade(15000, 1)
+        this.drowGreade(16000, 1)
+        this.drowGreade(17900, 2)
+        this.drowGreade(18500, 2)
+        this.drowGreade(19000, 2)
+        for (let i = 500; i < 19500; i += 1781) {
+          this.drowCOIN(i, 1);
         }
+      }
     }
 
 
@@ -377,132 +378,136 @@ class Game {
       }
       this.inteligent = KodrvacIntel
     }
-  
 
 
 
-  if (this.mario.collidesWithShaurma(this.shaurma)) {
-    this.shaurma.flag = false;
-    this.bag.flag = false;
-    this.bag.y = -32687
-    if (this.mario.flag == 1 && !this.shaurma.flag && this.shaurmacount == 1) {
-      this.mario.flag = 2;
-      this.shaurmacount = 0;
+
+    if (this.mario.collidesWithShaurma(this.shaurma)) {
+      this.shaurma.flag = false;
+      this.bag.flag = false;
+      this.bag.y = -32687
+      if (this.mario.flag == 1 && !this.shaurma.flag && this.shaurmacount == 1) {
+        this.mario.flag = 2;
+        this.shaurmacount = 0;
+      }
+      else if (this.mario.flag == 0 && !this.shaurma.flag && this.shaurmacount == 1) {
+        this.mario.flag = 1;
+        this.shaurmacount = 0;
+      }
+
     }
-    else if (this.mario.flag == 0 && !this.shaurma.flag && this.shaurmacount == 1) {
-      this.mario.flag = 1;
-      this.shaurmacount = 0;
-    }
-    
-  }
- 
 
-  const restCoins = this.coins.filter(coin => !this.mario.collidesWith(coin))
 
-  const restPapers = this.papers.filter(paper => !this.mario.collidesWith(paper))
-  this.papers.forEach(paper => {
+    const restCoins = this.coins.filter(coin => !this.mario.collidesWith(coin))
+
+    const restPapers = this.papers.filter(paper => !this.mario.collidesWith(paper))
+    this.papers.forEach(paper => {
       if (this.mario.collidesWith(paper)) {
-         
+
         this.sounds.open_tuxt_sound.play()
         openModal()
       }
     })
 
-  this.inteligent.forEach(inteligent => {
-    if (inteligent.is_afraid(this.mario)) {
-      inteligent.afraid = true;
-    }
-  })
-  const newPapers = this.papers.length - restPapers.length // paper-ov inch ka sax avelacraca
-  const newPoints = this.coins.length - restCoins.length
-  this.paperPoints += newPapers
-  this.papers = restPapers
-  this.points += newPoints
+    this.inteligent.forEach(inteligent => {
+      if (inteligent.is_afraid(this.mario)) {
+        inteligent.afraid = true;
+      }
+    })
+    const newPapers = this.papers.length - restPapers.length // paper-ov inch ka sax avelacraca
+    const newPoints = this.coins.length - restCoins.length
+    this.paperPoints += newPapers
+    this.papers = restPapers
+    this.points += newPoints
 
 
-  if (newPoints && this.mario.isDie == false) {
-    this.sounds.coin.currentTime = 0
-    this.sounds.coin.play()
-  }
-
-  this.coins = restCoins
-
-
-  if (this.mario.collidesWithBag(this.bag)) {
-    this.shaurma.flag = true;
-  }
-
-
-
-  const headAlvards = this.alvards.filter(alvard => !this.mario.HeadJump(alvard))
-  const newheadAlvards = this.alvards.length - headAlvards.length
-  console.log(newheadAlvards)
-  if (newheadAlvards) {
-    this.alvards = headAlvards
-
-  }
-  const headPolice = this.polices.filter(police => !this.mario.HeadJump(police))
-  const newheadPolice = this.polices.length - headPolice.length
-  if (newheadPolice) {
-    this.polices = headPolice
-
-  }
-
-
-  const restAlvards = this.alvards.filter(alvard => !this.mario.collidesWithAlvard(alvard))
-  const newAlvards = this.alvards.length - restAlvards.length
-  this.points += newAlvards
-
-  if (newAlvards) {
-    this.sounds.alvard.currentTime = 0
-    this.sounds.alvard.play()
-
-    if (this.mario.flag == 2) {
-      this.alvards = restAlvards
-      this.mario.flag = 1
-    }
-    else if (this.mario.flag == 1) {
-      this.alvards = restAlvards
-      this.mario.flag = 0
-
-    }
-    else if (this.mario.flag == 0) {
-      this.alvards = restAlvards
-      this.sounds.theme.pause()
-      this.sounds.theme2.play()
-      this.mario.isDie = true
-
-      this.mario.animateDie()
-      this.sounds.tati.play()
+    if (newPoints && this.mario.isDie == false) {
+      this.sounds.coin.currentTime = 0
+      this.sounds.coin.play()
     }
 
-  }
-  const restPolice = this.polices.filter(police => !this.mario.collidesWithAlvard(police))
-  const newPolice = this.polices.length - restPolice.length
-  this.points += newPolice
+    this.coins = restCoins
 
-  if (newPolice) {
-    // this.sounds.alvard.currentTime = 0
-    // this.sounds.alvard.play()
 
-    if (this.mario.flag == 2) {
-      this.polices = restPolice
-      this.mario.flag = 1
-    }
-    else if (this.mario.flag == 1) {
-      this.polices = restPolice
-      this.mario.flag = 0
-
-    }
-    else if (this.mario.flag == 0) {
-      this.polices = restPolice
-      this.sounds.theme.pause()
-      this.sounds.theme2.play()
-      this.mario.isDie = true
-      this.mario.animateDie()
+    if (this.mario.collidesWithBag(this.bag)) {
+      this.shaurma.flag = true;
     }
 
-  }
+
+
+    const headAlvards = this.alvards.filter(alvard => !this.mario.HeadJump(alvard))
+    const newheadAlvards = this.alvards.length - headAlvards.length
+    console.log(newheadAlvards)
+    if (newheadAlvards) {
+      this.alvards = headAlvards
+
+    }
+    const headPolice = this.polices.filter(police => !this.mario.HeadJump(police))
+    const newheadPolice = this.polices.length - headPolice.length
+    if (newheadPolice) {
+      this.polices = headPolice
+
+    }
+
+
+    const restAlvards = this.alvards.filter(alvard => !this.mario.collidesWithAlvard(alvard))
+    const newAlvards = this.alvards.length - restAlvards.length
+    this.points += newAlvards
+
+    if (newAlvards) {
+      this.sounds.alvard.currentTime = 0
+      this.sounds.alvard.play()
+
+      if (this.mario.flag == 2) {
+        this.alvards = restAlvards
+        this.mario.flag = 1
+      }
+      else if (this.mario.flag == 1) {
+        this.alvards = restAlvards
+        this.mario.flag = 0
+
+      }
+      else if (this.mario.flag == 0) {
+        this.alvards = restAlvards
+        this.sounds.theme.pause()
+        this.sounds.theme2.play()
+        this.mario.isDie = true
+        setTimeout(() => {
+          window.location.href = "gameover.html"
+
+        }, 2000)
+
+        this.mario.animateDie()
+        this.sounds.tati.play()
+      }
+
+    }
+    const restPolice = this.polices.filter(police => !this.mario.collidesWithAlvard(police))
+    const newPolice = this.polices.length - restPolice.length
+    this.points += newPolice
+
+    if (newPolice) {
+      // this.sounds.alvard.currentTime = 0
+      // this.sounds.alvard.play()
+
+      if (this.mario.flag == 2) {
+        this.polices = restPolice
+        this.mario.flag = 1
+      }
+      else if (this.mario.flag == 1) {
+        this.polices = restPolice
+        this.mario.flag = 0
+
+      }
+      else if (this.mario.flag == 0) {
+        this.polices = restPolice
+        this.sounds.theme.pause()
+        this.sounds.theme2.play()
+        this.mario.isDie = true
+        this.mario.animateDie()
+      }
+
+    }
 
     const restKim = this.kims.filter(kim => !this.mario.collidesWithKim(kim))
     const newKim = this.kims.length - restKim.length

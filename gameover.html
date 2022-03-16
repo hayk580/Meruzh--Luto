@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,25 +11,49 @@
 <body>
 
 
+  <div class="menu">
+   
+    <div class="choose">
+     <a href=""> <img src="./assets/img/duduk.png"  width="200"> </a>
+    </div>
+   <div class="" style="text-align: center;">
+    <div class="about">
+         <img src="./assets/img/text.png" width="500"> 
+    </div>
+
+    <div class="option" onclick="replay()" style="margin-top: 15%;" >
+      <img src="./assets/img/start.png"  width="400" > 
+    </div>
+    </div>
+
+<!-- 
+    <div class="exit">
+      <img src="./assets/img/exit.png"> 
+    </div> -->
+  </div>
   <div class="card">
 
 </div>
 
-  <div id="game">
-    <canvas id="game-canvas"></canvas>
-    <script>
-      async function openModal(value) {
-          this.myModal = new SimpleModal("");
-          try {
-              const modalResponse = await myModal.question();
-         //     alert(`The response is ${modalResponse}`);
-          } catch (err) {
-              console.log(err);
-          }
-      }
-  </script>
-  </div>
-  <script src="./assets/js/constants.js"></script>
+<style>
+    body
+
+    {
+background-image: url('./assets/img/menu-bg.png'); 
+background-size: 100% 100%;
+}
+</style>
+<script>
+    function replay() {
+        
+        window.location.href = localStorage.getItem("level");
+
+    }
+
+     
+</script> 
+
+<script src="./assets/js/constants.js"></script>
   <script src="./assets/js/models/background.js"></script>
   <script src="./assets/js/models/fireball.js"></script>
   <script src="./assets/js/models/coin.js"></script>
@@ -37,7 +62,7 @@
   <script src="./assets/js/models/mario.js"></script>
   <script src="./assets/js/models/alvard.js"></script>
   <script src="./assets/js/models/police.js"></script>
-  <script src="./assets/js/models/barekamutyun.js"></script>
+  <script src="./assets/js/models/game.js"></script>
   <script src="./assets/js/models/paper.js"></script>
   <script src="./assets/js/models/bisedka.js"></script>
   <script src="./assets/js/models/bag.js"></script>

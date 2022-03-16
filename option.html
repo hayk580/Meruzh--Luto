@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,29 +11,69 @@
 <body>
 
 
+  <div class="menu">
+   
+    <div class="choose">
+     <a href="choosePerson.html"> <img src="./assets/img/opt.png"  width="500"> </a>
+    </div>
+   <div class="" style="text-align: center;">
+    <div class="about" onclick="on()">
+         <img src="./assets/img/on-on.png" width="300" id="on"> 
+    </div>
+
+    </div>
+
+<!-- 
+    <div class="exit">
+      <img src="./assets/img/exit.png"> 
+    </div> -->
+  </div>
   <div class="card">
 
 </div>
 
-  <div id="game">
-    <canvas id="game-canvas"></canvas>
-    <script>
-      async function openModal(value) {
-          this.myModal = new SimpleModal("");
-          try {
-              const modalResponse = await myModal.question();
-         //     alert(`The response is ${modalResponse}`);
-          } catch (err) {
-              console.log(err);
-          }
-      }
-  </script>
-  </div>
-  <script src="./assets/js/constants.js"></script>
+<style>
+    body
+
+    {
+background-image: url('./assets/img/menu-bg.png'); 
+background-size: 100% 100%;
+}
+</style>
+<script>
+      let stateOn = 0
+
+    function on() {
+        localStorage.setItem('music', 'on')
+        if(stateOn == 0)
+        {
+          stateOn =1
+        }
+       else{
+          stateOn= 0
+        localStorage.setItem('music', 'off')
+
+        }
+
+
+        if(stateOn ==1 )
+{
+        document.getElementById('on').src = './assets/img/on-on.png'
+}
+
+else {
+    document.getElementById('on').src = './assets/img/off.png'
+
+}
+    }
+
+      
+</script> 
+
+<script src="./assets/js/constants.js"></script>
   <script src="./assets/js/models/background.js"></script>
   <script src="./assets/js/models/fireball.js"></script>
   <script src="./assets/js/models/coin.js"></script>
-  <script src="./assets/js/models/metro_start.js"></script>
   <script src="./assets/js/models/kim.js"></script>
   <script src="./assets/js/models/blocks.js"></script>
   <script src="./assets/js/models/mario.js"></script>

@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mario</title>
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+
+<div class="js-auto-slider-wrap">
+  <div class="js-auto-slider-inner">
+    <div class="js-auto-slider" id="js-auto-slider">
+      <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/1.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+      <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/2.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+      <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/3.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+      <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/4.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+
+       <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/5.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+
+       <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/6.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+       <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/7.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+
+       <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/8.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+
+       <div class="js-auto-slider-elm">
+        <div class="js-auto-slider-img">
+          <img src="./assets/img/9.png" alt="" class="ob-fit-cover posi-full-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ul class="js-auto-slider-pager" id="js-auto-slider-pager"></ul>
+<script src="./assets/js/constants.js"></script>
+  <script src="./assets/js/models/background.js"></script>
+  <script src="./assets/js/models/fireball.js"></script>
+  <script src="./assets/js/models/coin.js"></script>
+  <script src="./assets/js/models/kim.js"></script>
+  <script src="./assets/js/models/blocks.js"></script>
+  <script src="./assets/js/models/mario.js"></script>
+  <script src="./assets/js/models/alvard.js"></script>
+  <script src="./assets/js/models/police.js"></script>
+  <script src="./assets/js/models/game.js"></script>
+  <script src="./assets/js/models/paper.js"></script>
+  <script src="./assets/js/models/bisedka.js"></script>
+  <script src="./assets/js/models/bag.js"></script>
+  <script src="./assets/js/models/shaurma.js"></script>
+  <script src="./assets/js/models/inteligent.js"></script>
+  <script src="./assets/js/index.js"></script>
+</body>
+</html>
+<style>
+  @charset "UTF-8";
+.js-auto-slider-wrap {
+  overflow: hidden;
+}
+.js-auto-slider {
+  display: flex;
+}
+.js-auto-slider-elm {
+  overflow: hidden;
+  position: relative;
+	z-index: 1;
+  flex-shrink: 0;
+}
+.js-auto-slider-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+	right: -45%;
+  bottom: 0;
+}
+.js-auto-slider-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.js-auto-slider-inner {
+  margin-left: auto;
+  margin-right: auto;
+}
+.js-auto-slider-elm {
+  height: 50vw;
+  width: 76vw;
+  margin-right: 4.8vw;
+  border-radius: 3.3vw;
+}
+@media only screen and (min-width: 768px) {
+  .js-auto-slider-inner {
+  }
+  .js-auto-slider-elm {
+    /* height: 30vw; */
+    width: 50vw;
+    margin-right: 5vw;
+    border-radius: 1.5vw;
+  }
+}
+
+.js-auto-slider-pager {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  list-style: none;
+}
+.js-auto-slider-pager-elm {
+  margin: 0 20px;
+}
+.js-auto-slider-pager-btn {
+  display: block;
+  height: 12px;
+  width: 12px;
+  padding: 0;
+  font-size: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background .3s;
+}
+.js-auto-slider-pager-btn {
+  background: #ccc;
+}
+.js-auto-slider-pager-btn:hover,
+.js-auto-slider-pager-btn.is-active {
+  background: red;
+}
+</style>
+
+<script>
+autoSlider({
+  target: '#js-auto-slider',
+  pager: '#js-auto-slider-pager'
+});
+
+//auto slider
+function autoSlider(setOptions) {
+	'use strict';
+
+	const defaultOptions = {
+		target: null, 
+		activeClass: 'is-active',  
+		slideElm: 'js-auto-slider-elm', 
+		slideElmClone: 'js-auto-slider-elm-clone',  
+		slideChildImg: 'js-auto-slider-img', 
+		activeIndex: 0, 
+		scrollTimeBefore: 5, 
+		scrollTimeAfter: 0.6, 
+		scrollSpeedBefore: 30,  
+		scrollRatioBefore: 0.4, 
+		easing: Power1.easeOut, 
+		pager: null,
+		pagerBusy: 'is-busy', 
+		pagerElm: 'js-auto-slider-pager-elm', 
+		pagerBtn: 'js-auto-slider-pager-btn', 
+		pagerText: null, 
+		pagerActiveClass: 'is-active',
+	}
+
+	const options = Object.assign({}, defaultOptions, setOptions);
+
+	options.slideImgBoxAnime = null;
+	options.startSlideIndex = 0;
+	options.lastSlideIndex = 0;
+	options.thisActiveElm = null;
+	options.slideXAfter = 0;
+	if(options.scrollRatioBefore >= 0.9) {
+		options.scrollRatioBefore = 0.8;
+	}
+
+
+	if(!document.querySelector(options.target)) {
+		return false;
+	}
+
+	options.target = document.querySelector(options.target);
+
+	slideFunc(options);
+	let resizeTimer = null;
+	window.addEventListener('resize', function(){
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(function() {
+			slideFunc(options);
+		}, 200);
+	});
+
+	function slideFunc(options) {
+		const target = options.target;
+
+		if(!target.querySelector('.'+options.activeClass)) {
+
+			const activeIndex = options.activeIndex;
+			target.setAttribute('data-active',activeIndex);
+
+			let slideElms = Array.prototype.slice.call(target.querySelectorAll('.'+options.slideElm),0);
+			const slideLength = slideElms.length;
+			if(slideLength < 2) {
+				return false;
+			}
+			slideElms.forEach(function(elm, index){
+				elm.setAttribute('data-slide-index',index);
+			});
+
+			const pager = document.querySelector(options.pager);
+			if(pager) {
+				let setHtml = '';
+				let setClass = '';
+				for (let i = 0; i < slideLength; i++) {
+					if(i !== activeIndex) {
+						setClass = '';
+					} else {
+						setClass = ' ' + options.pagerActiveClass;
+					}
+					let setText = options.pagerText;
+					if(!setText) {
+						setText = i;
+					}
+					setHtml += '<li class="'+options.pagerElm + setClass+'"><button class="'+options.pagerBtn+setClass+'" data-slide-index="'+i+'">'+setText+'</button></li>';
+				}
+				pager.innerHTML = setHtml;
+			}
+
+			const slideElmsHtml = target.innerHTML;
+			while (target.querySelectorAll('.'+options.slideElm).length < 3) {
+				target.innerHTML += slideElmsHtml;
+			}
+
+			slideElms = target.querySelectorAll('.'+options.slideElm);
+			let lastSlideElm = slideElms[slideElms.length-1];
+			const cloneElm = lastSlideElm.cloneNode(true);
+			cloneElm.classList.add(options.slideElmClone);
+			target.insertBefore(cloneElm, slideElms[0]);
+
+			options.startSlideIndex = options.startSlideIndex + 1;
+
+			options.lastSlideIndex = target.querySelectorAll('.'+options.slideElm).length - 1;
+
+			const cloneElms = Array.prototype.slice.call(slideElms,0);
+			cloneElms.forEach(function(elm, index){
+				const cloneElm = elm.cloneNode(true);
+				cloneElm.classList.add(options.slideElmClone);
+				target.insertBefore(cloneElm, null);
+			});
+
+			target.querySelectorAll('.'+options.slideElm)[(options.startSlideIndex + activeIndex)].classList.add(options.activeClass);
+			options.thisActiveElm = target.querySelector('.'+options.activeClass);
+
+			if(pager) {
+				let pagerBtns = Array.prototype.slice.call(pager.querySelectorAll('.'+options.pagerBtn),0);
+				pagerBtns.forEach(function(elm, index){
+					elm.addEventListener('click', function() {
+						const thisIndex = Number(elm.getAttribute('data-slide-index'));
+
+						const getActiveIndex = options.activeIndex;
+						const activeSlideIndex =  Number(target.querySelectorAll('.'+options.slideElm)[getActiveIndex].getAttribute('data-slide-index'));
+
+						if(thisIndex === activeSlideIndex || pager.classList.contains(options.pagerBusy)) {
+							return false;
+						}
+
+						pager.classList.add(options.pagerBusy);
+
+						removePagerClass(pager,options);
+
+						const slideWidth = getWidth(options.thisActiveElm);
+
+						let nextSlideIndex = getActiveIndex + thisIndex - activeSlideIndex;
+						if(thisIndex < activeSlideIndex) {
+							const getSlideLength = options.lastSlideIndex;
+							nextSlideIndex = getSlideLength + thisIndex + 1;
+						}
+
+						target.setAttribute('data-active',	thisIndex);
+
+						options.slideXAfter = slideWidth * nextSlideIndex;
+
+						gsap.to(target, options.scrollTimeAfter, {
+							x: -options.slideXAfter,
+							ease: options.easing,
+							overwrite: true,
+							onComplete: function() {
+								const slideElms = target.querySelectorAll('.'+options.slideElm);
+								let getActiveIndex = Number(target.getAttribute('data-active'));
+
+								options.thisActiveElm.classList.remove(options.activeClass);
+
+								if(thisIndex < activeSlideIndex) {
+									let targetIndex = options.startSlideIndex+thisIndex;
+									slideElms[targetIndex].classList.add(options.activeClass);
+
+									gsap.set(slideElms[targetIndex-1].querySelector('.'+options.slideChildImg), {
+										x: gsap.getProperty(slideElms[options.lastSlideIndex].querySelector('.'+options.slideChildImg), 'x')+'%',
+										overwrite: true
+									});
+									gsap.set(slideElms[targetIndex].querySelector('.'+options.slideChildImg), {
+										x: gsap.getProperty(slideElms[options.lastSlideIndex+1].querySelector('.'+options.slideChildImg), 'x')+'%',
+										overwrite: true
+									});
+									gsap.set(slideElms[targetIndex+1].querySelector('.'+options.slideChildImg), {
+										x: gsap.getProperty(slideElms[options.lastSlideIndex+2].querySelector('.'+options.slideChildImg), 'x')+'%',
+										overwrite: true
+									});
+
+								} else {
+									slideElms[(options.startSlideIndex+getActiveIndex)].classList.add(options.activeClass);
+								}
+
+								options.thisActiveElm = target.querySelector('.'+options.activeClass);
+
+								slideAnimeFunc(options);
+
+								pager.classList.remove(options.pagerBusy);
+								addPagerClass(pager,options);
+							}
+						});
+					});
+				});
+			}
+		}
+
+		if(options.slideImgBoxAnime) {
+			options.slideImgBoxAnime = null;
+		}
+		slideAnimeFunc(options);
+	}
+	function slideAnimeFunc(options) {
+		const target = options.target;
+
+		let slideElms =  Array.prototype.slice.call(target.querySelectorAll('.'+options.slideElm),0);
+		options.thisActiveElm = target.querySelector('.'+options.activeClass);
+		options.activeIndex = slideElms.indexOf(options.thisActiveElm);
+
+		target.setAttribute('data-active',options.activeIndex);
+
+		const slideWidth = getWidth(options.thisActiveElm);
+
+		const startPosi = -(slideWidth * options.activeIndex);
+		options.slideImgBoxAnime = gsap.set(target,{
+			x: startPosi
+		});
+
+		options.slideXAfter = slideWidth * (options.activeIndex + 1);
+
+		let slideBeforeWidth = slideWidth * options.scrollRatioBefore;
+
+		const linearScrollX = options.scrollTimeBefore * options.scrollSpeedBefore;
+		if(slideBeforeWidth > linearScrollX) {
+			slideBeforeWidth = linearScrollX;
+		}
+		const slideBeforeX = -(options.slideXAfter - (slideWidth - slideBeforeWidth));
+
+		options.slideImgBoxAnime = gsap.to(target, options.scrollTimeBefore, {
+			x: slideBeforeX,
+			ease:Linear.easeNone,
+			overwrite: true,
+			onComplete: function() {
+				const pager = document.querySelector(options.pager);
+				if(pager) {
+					pager.classList.add(options.pagerBusy);
+				}
+				slideAnimeAfter(options);
+			}
+		});
+
+
+		const slideElmImgs =  Array.prototype.slice.call(target.querySelectorAll('.'+options.slideChildImg),0);
+		gsap.to(slideElmImgs, options.scrollTimeAfter, {
+			x: '0%',
+			ease:Linear.easeNone,
+			overwrite: true
+		});
+
+		let setActiveImg = [];
+		setActiveImg.push(options.thisActiveElm.previousElementSibling.querySelector('.'+options.slideChildImg));
+		setActiveImg.push(options.thisActiveElm.querySelector('.'+options.slideChildImg));
+		setActiveImg.push(options.thisActiveElm.nextElementSibling.querySelector('.'+options.slideChildImg));
+
+		gsap.to(setActiveImg, options.scrollTimeBefore, {
+			x: '+=-3%',
+			ease:Linear.easeNone,
+			overwrite: true,
+			onComplete: function() {
+				gsap.to(setActiveImg, options.scrollTimeAfter, {
+					x: '+=-10%',
+					ease: options.easing,
+					overwrite: true
+				});
+			}
+		});
+
+	}
+
+	function slideAnimeAfter(options) {
+		const target = options.target;
+		const slideElms = target.querySelectorAll('.'+options.slideElm);
+		gsap.to(target, options.scrollTimeAfter, {
+			x: -options.slideXAfter,
+			ease: options.easing,
+			overwrite: true,
+			onComplete: function() {
+				let getActiveIndex = Number(target.getAttribute('data-active'));
+
+				options.thisActiveElm.classList.remove(options.activeClass);
+
+				if(getActiveIndex < options.lastSlideIndex) {
+					slideElms[(options.startSlideIndex+getActiveIndex)].classList.add(options.activeClass);
+
+				} else {
+					slideElms[options.startSlideIndex].classList.add(options.activeClass);
+
+					gsap.set(slideElms[options.startSlideIndex-1].querySelector('.'+options.slideChildImg), {
+						x: gsap.getProperty(slideElms[options.lastSlideIndex].querySelector('.'+options.slideChildImg), 'x')+'%',
+						overwrite: true
+					});
+					gsap.set(slideElms[options.startSlideIndex].querySelector('.'+options.slideChildImg), {
+						x: gsap.getProperty(slideElms[options.lastSlideIndex+1].querySelector('.'+options.slideChildImg), 'x')+'%',
+						overwrite: true
+					});
+					gsap.set(slideElms[options.startSlideIndex+1].querySelector('.'+options.slideChildImg), {
+						x: gsap.getProperty(slideElms[options.lastSlideIndex+2].querySelector('.'+options.slideChildImg), 'x')+'%',
+						overwrite: true
+					});
+				}
+
+				options.thisActiveElm = target.querySelector('.'+options.activeClass);
+
+				slideAnimeFunc(options);
+
+				const pager = document.querySelector(options.pager);
+				if(pager) {
+					pager.classList.remove(options.pagerBusy);
+					removePagerClass(pager,options);
+					addPagerClass(pager,options);
+				}
+			}
+		});
+	}
+	function getWidth(elm) {
+		const width = elm.getBoundingClientRect().width;
+		const styles = getComputedStyle(elm);
+		const left = parseFloat(styles.marginLeft);
+		const right = parseFloat(styles.marginRight);
+		return width + left + right;
+	}
+	function removePagerClass(pager,options) {
+		pager.querySelector('.'+options.pagerElm+'.'+options.pagerActiveClass).classList.remove(options.pagerActiveClass);
+		pager.querySelector('.'+options.pagerBtn+'.'+options.pagerActiveClass).classList.remove(options.pagerActiveClass);
+	}
+	function addPagerClass(pager,options) {
+		const activeSlideIndex =  Number(options.thisActiveElm.getAttribute('data-slide-index'));
+		const activePager = pager.querySelectorAll('.'+options.pagerElm)[activeSlideIndex];
+		activePager.classList.add(options.pagerActiveClass);
+		activePager.querySelector('.'+options.pagerBtn).classList.add(options.pagerActiveClass);
+	}
+}
+</script>

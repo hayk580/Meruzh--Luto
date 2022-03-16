@@ -54,6 +54,12 @@ class SimpleModal {
         this._destroyModal();
       });
 
+
+      setTimeout(() => {
+        resolve(null);
+        this._destroyModal();
+      }, 1000)
+
       this.closeButton.addEventListener('click', () => {
         resolve(null);
         this._destroyModal();
@@ -85,7 +91,7 @@ class SimpleModal {
     // Close
     this.closeButton = document.createElement('button');
     this.closeButton.type = 'button';
-    this.closeButton.innerHTML = '&times;';
+    // this.closeButton.innerHTML = '&times;';
     this.closeButton.classList.add('thin-ui-modal-close');
     title.appendChild(this.closeButton);
 

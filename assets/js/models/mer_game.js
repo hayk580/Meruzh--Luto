@@ -294,6 +294,11 @@ class Game {
         this.sounds.theme.pause()
         this.sounds.theme2.play()
         this.mario.isDie = true
+        setTimeout(() => {
+          window.location.href = "gameover.html"
+
+        }, 2000)
+
         this.alvards = restAlvards
         this.mario.animateDie()
         this.sounds.tati.play()

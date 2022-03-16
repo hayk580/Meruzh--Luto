@@ -78,6 +78,9 @@ class Mario {
         if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
         if (this.flag == 1) { this.sprite.src = './assets/img/normal-meruzh.png' }
         if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
+
+        this.ctx.fillRect(20, 20, 150, 100);
+
       }
 
 
@@ -350,18 +353,10 @@ class Mario {
   }
 
   collidesWithBlocks(element) {
-
-    if (this.x < element.x + element.width &&
+    return this.x < element.x + element.width &&
       this.x + this.width > element.x &&
       this.y < element.y + element.height &&
-      this.y + this.height > element.y) {
-      return "true"
-    }
-
-    else {
-      return false
-    }
-
+      this.y + this.height > element.y
 
 
   }
