@@ -16,7 +16,7 @@ class Game {
         level4: './assets/img/kaskad copy-01.png',
         level5: './assets/img/Hraparakai-01.png',
         level6: './assets/img/Metro-01.png',
-        level7: './assets/img/Rossia.png',
+        level7: './assets/img/Rossia-01.png',
         level8: './assets/img/Arshakunyac-01.png',
         level9: './assets/img/Hayreniq-01.png',
         level10: './assets/img/3rd Mas-01.png',
@@ -26,8 +26,7 @@ class Game {
       }
       this.background = new Background(this.ctx, this.levels.level7)
   
-      this.bag = new Bag(this.ctx)
-      this.shaurma = new Shaurma(this.ctx)
+   
       this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
       this.alvardTati = new Alvard()
       this.bichok = new Fireball()
@@ -36,7 +35,8 @@ class Game {
       this.nextLevel = undefined
       this.paperAnimation = undefined
       this.paperPoints = 0
-  
+      this.bag = new Bag(this.ctx, 7300,700)
+      this.shaurma = new Shaurma(this.ctx, this.bag.x, this.bag.y - 20)
       this.coins = [
   
       ]
@@ -44,31 +44,50 @@ class Game {
       this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 250, this.canvas.height - 200)
       this.inteligent = [
         new Inteligent(this.ctx, this.mario.x + 1200, this.mario.y),
-        new Inteligent(this.ctx, this.mario.x + 5800, this.mario.y),
+        new Inteligent(this.ctx, this.mario.x + 3001, this.mario.y),
+        new Inteligent(this.ctx, this.mario.x + 6000, this.mario.y),
+        new Inteligent(this.ctx, this.mario.x + 10000, this.mario.y),
+        new Inteligent(this.ctx, this.mario.x + 12001, this.mario.y),
+        new Inteligent(this.ctx, this.mario.x + 12100, this.mario.y),
       ]
   
       this.alvards = [
   
-        new Alvard(this.ctx, this.mario.x + 500, this.mario.y),
-        new Alvard(this.ctx, this.mario.x + 900, this.mario.y),
-  
+        new Alvard(this.ctx, this.mario.x + 2004, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 3312, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 5317, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 6800, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 8500, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 10520, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 12531, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 14531, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 19531, this.mario.y),
+        new Alvard(this.ctx, this.mario.x + 24531, this.mario.y),
+
+
       ]
   
-  
-  
       this.polices = [
-        // new Police(this.ctx, this.mario.x + 1100, this.mario.y),
-        // new Police(this.ctx, this.mario.x + 1200, this.mario.y),
-        // new Police(this.ctx, this.mario.x + 1300, this.mario.y)
+        new Police(this.ctx, this.mario.x + 2304, this.mario.y),
+        new Police(this.ctx, this.mario.x + 3700, this.mario.y),
+        new Police(this.ctx, this.mario.x + 5622, this.mario.y),
+        new Police(this.ctx, this.mario.x + 7922, this.mario.y),
+        new Police(this.ctx, this.mario.x + 11422, this.mario.y),
+        new Police(this.ctx, this.mario.x + 13222, this.mario.y),
+        new Police(this.ctx, this.mario.x + 17222, this.mario.y),
+        new Police(this.ctx, this.mario.x + 18322, this.mario.y),
+        new Police(this.ctx, this.mario.x + 19422, this.mario.y),
+        new Police(this.ctx, this.mario.x + 20222, this.mario.y),
+        new Police(this.ctx, this.mario.x + 23322, this.mario.y),
       ]
   
   
       this.kims = [
         new Kim(this.ctx, this.mario.x + 2100, this.mario.y - 20),
-        new Kim(this.ctx, this.mario.x + 2400, this.mario.y),
+        new Kim(this.ctx, this.mario.x + 9000, this.mario.y),
       ]
   
-  
+      
       this.papers = [
         new Paper(this.ctx, this.mario.x + 3000, this.mario.y),
       ]
@@ -132,13 +151,14 @@ class Game {
   
   
     drowCOIN(x) {
-      this.drawCoin(x, 500, 1)
-      this.drawCoin(x, 350, 2)
+      this.drawCoin(x, 800, 1)
+      this.drawCoin(x + 1000, 750, 2)
+      this.drawCoin(x + 1500, 800, 1)
+      this.drawCoin(x + 3000, 750, 2)
     }
   
     drawCoin(x, y, tmp) {
       if (tmp == 1) {
-        //this.coins.push(new Coin(this.ctx, x + (1*80) , y-(50) )) 
         this.coins.push(new Coin(this.ctx, x + (2 * 80) + 10, y - (100)))
         this.coins.push(new Coin(this.ctx, x + (3 * 80), y - (150)))
         this.coins.push(new Coin(this.ctx, x + (4 * 80), y - (200)))
@@ -200,7 +220,7 @@ class Game {
       }
       if (this.shaurma.flag) {
         this.shaurma.draw()
-        this.shaurma.move()
+        this.shaurma.move(this.canvas.height - 50)
       }
       
       this.coins.forEach(coin => coin.draw())
@@ -252,6 +272,7 @@ class Game {
         this.masiviBisetka.move(this.mario.x)
         this.kims.forEach(kim => kim.move())
         this.bag.move()
+        this.shaurma.moveright()
       }
       this.mario.move()
     }
@@ -267,17 +288,43 @@ class Game {
       this.blocks.forEach(blocks => blocks.onKeyEvent(event))
       this.papers.forEach(papers => papers.onKeyEvent(event))
       this.masiviBisetka.onKeyEvent(event)
+      this.shaurma.onKeyEvent(event)
     }
   
     checkCollisions() {
   
+      if (this.points>=50)
+      {
+        this.points=0
+        this.mario.bichokcount+=5
+        this.sounds.add_bichok.play()
+      }
+
       if (this.drow) {
         this.drow = false
-        this.drowGreade(100, 1)
-        this.drowGreade(1000, 1)
-        this.drowGreade(2000, 2)
-        for (let i = 500; i < 10000; i += 800) {
-          this.drowCOIN(i);
+        this.drowGreade(600, 1)
+        this.drowGreade(2000, 1)
+        this.drowGreade(4200, 2)
+        this.drowGreade(4900, 1)
+        this.drowGreade(5700, 1)
+        this.drowGreade(6600, 2)
+        this.drowGreade(9500, 1)
+        this.drowGreade(11000, 1)
+        this.drowGreade(12000, 2)
+        this.drowGreade(12600, 1)
+        this.drowGreade(13200, 1)
+        this.drowGreade(14000, 2)
+        this.drowGreade(14900, 1)
+        this.drowGreade(15600, 2)
+        this.drowGreade(16500, 1)
+        this.drowGreade(17300, 2)
+        this.drowGreade(18300, 1)
+        this.drowGreade(20300, 2)
+        this.drowGreade(23300, 1)
+
+        for (let i = 500; i < 19500; i += 1781) {
+          this.drowCOIN(i)
+          //this.drowGreade(i,1)
         }
       }
   
@@ -332,14 +379,8 @@ class Game {
     const restPapers = this.papers.filter(paper => !this.mario.collidesWith(paper))
     this.papers.forEach(paper => {
         if (this.mario.collidesWith(paper)) {
-            this.drawInterval = false
-          // this.paperAnimation = setInterval(() => {
-          //   paper.animate(this.mario.x, this.mario.y)
-          // });
-          // setTimeout(() => {
-          //   clearInterval(this.paperAnimation)
-          // }, 2000);
-          this.sounds.open_tuxt_sound.play()
+           // this.drawInterval = false
+            this.sounds.open_tuxt_sound.play()
           openModal()
         }
       })
@@ -362,7 +403,8 @@ class Game {
     }
 
     this.coins = restCoins
-
+    this.ctx.font = '18px Arial'
+    this.ctx.fillText(`ճշտի բալանս: ${this.mario.tuxtcount}`, 30, 75)
 
     if (this.mario.collidesWithBag(this.bag)) {
       this.shaurma.flag = true;

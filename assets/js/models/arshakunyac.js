@@ -26,8 +26,7 @@ class Game {
       }
       this.background = new Background(this.ctx, this.levels.level8)
   
-      this.bag = new Bag(this.ctx)
-      this.shaurma = new Shaurma(this.ctx)
+    
       this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
       this.alvardTati = new Alvard()
       this.bichok = new Fireball()
@@ -36,6 +35,8 @@ class Game {
       this.nextLevel = undefined
       this.paperAnimation = undefined
       this.paperPoints = 0
+      this.bag = new Bag(this.ctx, 8300, 600)
+      this.shaurma = new Shaurma(this.ctx, this.bag.x+20, this.bag.y - 10)
   
       this.coins = [
   
@@ -82,15 +83,23 @@ class Game {
   
   
       this.polices = [
-        // new Police(this.ctx, this.mario.x + 1100, this.mario.y),
-        // new Police(this.ctx, this.mario.x + 1200, this.mario.y),
-        // new Police(this.ctx, this.mario.x + 1300, this.mario.y)
+        new Police(this.ctx, this.mario.x + 2304, this.mario.y),
+        new Police(this.ctx, this.mario.x + 3700, this.mario.y),
+        new Police(this.ctx, this.mario.x + 5622, this.mario.y),
+        new Police(this.ctx, this.mario.x + 7922, this.mario.y),
+        new Police(this.ctx, this.mario.x + 11422, this.mario.y),
+        new Police(this.ctx, this.mario.x + 13222, this.mario.y),
+        new Police(this.ctx, this.mario.x + 17222, this.mario.y),
+        new Police(this.ctx, this.mario.x + 18322, this.mario.y),
+        new Police(this.ctx, this.mario.x + 19422, this.mario.y),
+        new Police(this.ctx, this.mario.x + 20222, this.mario.y),
+        new Police(this.ctx, this.mario.x + 23322, this.mario.y),
       ]
   
   
       this.kims = [
         new Kim(this.ctx, this.mario.x + 2100, this.mario.y - 20),
-        new Kim(this.ctx, this.mario.x + 2400, this.mario.y),
+        new Kim(this.ctx, this.mario.x + 5000, this.mario.y),
         new Kim(this.ctx, this.mario.x + 10000, this.mario.y),
         new Kim(this.ctx, this.mario.x + 14000, this.mario.y),
       ]
@@ -145,7 +154,6 @@ class Game {
             this.drawWall(x + 50 + (50 * 6), 50, 1)
             this.drawWall(x + 100 + (50 * 4), 70, 1)
             this.drawWall(x + 150 + (50 * 2), 90, 1)
-            //this.drawWall(x + 80, 400, 15)
           }
           if (tmp == 2) {
             this.drawWall(x, 30, 10)
@@ -159,7 +167,10 @@ class Game {
   
   
     drowCOIN(x, tmp) {
-        this.drawCoin(x, 300, tmp)
+      this.drawCoin(x, 800, 1)
+      this.drawCoin(x + 1000, 750, 2)
+      this.drawCoin(x + 1500, 800, 1)
+      this.drawCoin(x + 3000, 750, 2)
     }
   
     drawCoin(x, y, tmp) {
@@ -224,9 +235,11 @@ class Game {
       if (this.bag.flag) {
         this.bag.draw()
       }
+      this.ctx.font = '18px Arial'
+      this.ctx.fillText(`ճշտի բալանս: ${this.mario.tuxtcount}`, 30, 75)
       if (this.shaurma.flag) {
         this.shaurma.draw()
-        this.shaurma.move()
+        this.shaurma.move(this.canvas.height - 50)
       }
       this.coins.forEach(coin => coin.draw())
       this.blocks.forEach(blocks => blocks.draw())
@@ -276,8 +289,10 @@ class Game {
         this.masiviBisetka.move(this.mario.x)
         this.kims.forEach(kim => kim.move())
         this.bag.move()
+        this.shaurma.moveright()
       }
       this.mario.move()
+
     }
   
     onKeyEvent(event) {
@@ -291,10 +306,18 @@ class Game {
       this.blocks.forEach(blocks => blocks.onKeyEvent(event))
       this.papers.forEach(papers => papers.onKeyEvent(event))
       this.masiviBisetka.onKeyEvent(event)
+      this.shaurma.onKeyEvent(event)
     }
   
     checkCollisions() {
   
+      if (this.points>=50)
+      {
+        this.points=0
+        this.mario.bichokcount+=5
+        this.sounds.add_bichok.play()
+      }
+      
       if (this.drow) {
         if (this.drow) {
             this.drow = false
@@ -322,7 +345,7 @@ class Game {
             this.drowGreade(17900, 2)
             this.drowGreade(18500, 2)
             this.drowGreade(19000, 2)
-            for (let i = 500; i < MASIV_WIDTH; i += 800) {
+            for (let i = 500; i < 19500; i += 1781) {
               this.drowCOIN(i,1);
             }
           }
@@ -379,13 +402,7 @@ class Game {
     const restPapers = this.papers.filter(paper => !this.mario.collidesWith(paper))
     this.papers.forEach(paper => {
         if (this.mario.collidesWith(paper)) {
-            this.drawInterval = false
-          // this.paperAnimation = setInterval(() => {
-          //   paper.animate(this.mario.x, this.mario.y)
-          // });
-          // setTimeout(() => {
-          //   clearInterval(this.paperAnimation)
-          // }, 2000);
+           
           this.sounds.open_tuxt_sound.play()
           openModal()
         }
