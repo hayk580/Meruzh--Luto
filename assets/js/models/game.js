@@ -44,7 +44,7 @@ class Game {
 
     ]
 
-    this.masiviBisetka = new Bisetka(this.ctx, MASIV_WIDTH, this.canvas.height - 200)
+    this.masiviBisetka = new Bisetka(this.ctx, MASIV_WIDTH - 1000, this.canvas.height - 200)
     this.inteligent = [
       new Inteligent(this.ctx, this.mario.x + 1200, this.mario.y),
       new Inteligent(this.ctx, this.mario.x + 5800, this.mario.y),
@@ -232,6 +232,7 @@ class Game {
         this.alvards.forEach(alvard => {
           if ((alvard.x - this.mario.x) < 3000) {
             alvard.move()
+
           }
         })
         this.polices.forEach(police => {
@@ -318,7 +319,7 @@ class Game {
       this.bag.move()
       this.shaurma.moveright()
 
-
+      this.masiviBisetka.move(this.mario.x)
 
 
 
@@ -566,20 +567,28 @@ class Game {
       }, 2000);
 
     }
+  
     this.blocks.map(el => {
+
+
       const x = this.mario.collidesWithBlocks(el)
-      if (x && !this.mario.isDie) {
+
+      if (x) {
+
+
         this.mario.y = el.y - 116;
+
         if (this.mario.y == el.y - 116) {
           this.mario.isJumping = false
         }
         else {
           this.mario.vy = 0;
         }
+
       }
       else if (this.mario.x >= el.x - el.width &&
         this.mario.x <= el.x + el.width && this.mario.y > el.y) {
-        this.mario.isJumping = false
+        this.mario.isJumping = true
       }
 
     })

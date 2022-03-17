@@ -40,7 +40,7 @@ class Game {
 
     ]
 
-    this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH, this.canvas.height - 200)
+    this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 500, this.canvas.height - 200)
     this.inteligent = [
       new Inteligent(this.ctx, this.mario.x + 500, this.mario.y),
       new Inteligent(this.ctx, this.mario.x + 5700, this.mario.y),
@@ -328,6 +328,7 @@ class Game {
       this.papers.forEach(papers => papers.move(this.mario.x))
       this.kims.forEach(kim => kim.move())
       this.bag.move()
+      this.masiviBisetka.move(this.mario.x)
     }
     this.mario.move()
   }

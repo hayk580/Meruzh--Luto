@@ -41,7 +41,7 @@ class Game {
 
     ]
 
-    this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 250, this.canvas.height - 200)
+    this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 500, this.canvas.height - 200)
     this.inteligent = [
       new Inteligent(this.ctx, this.mario.x + 1200, this.mario.y),
       new Inteligent(this.ctx, this.mario.x + 3001, this.mario.y),
@@ -277,6 +277,7 @@ class Game {
       this.kims.forEach(kim => kim.move())
       this.bag.move()
       this.shaurma.moveright()
+      this.masiviBisetka.move(this.mario.x)
     }
     this.mario.move()
   }
@@ -486,6 +487,10 @@ class Game {
         this.sounds.theme2.play()
         this.mario.isDie = true
         this.mario.animateDie()
+        setTimeout(() => {
+          window.location.href = "gameover.html"
+
+        }, 2000)
       }
 
     }

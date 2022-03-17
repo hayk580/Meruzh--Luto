@@ -27,7 +27,7 @@ class Game {
     this.background = new Background(this.ctx, this.levels.level6)
 
 
-    this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
+    this.mario = new Mario(this.ctx, 50, this.canvas.height -  350)
     this.alvardTati = new Alvard()
     this.bichok = new Fireball()
     this.inteligent = new Inteligent()
@@ -35,7 +35,7 @@ class Game {
     this.nextLevel = undefined
     this.paperAnimation = undefined
     this.paperPoints = 0
-    this.bag = new Bag(this.ctx, 8300, 600)
+    this.bag = new Bag(this.ctx, 8300, 300)
     this.shaurma = new Shaurma(this.ctx, this.bag.x + 20, this.bag.y - 10)
 
     this.coins = [
@@ -150,15 +150,15 @@ class Game {
 
   drowGreade(x, tmp) {
     if (tmp == 1) {
-      this.drawWall(x, 30, 1)
-      this.drawWall(x + 50, 50, 1)
-      this.drawWall(x + 100, 70, 1)
-      this.drawWall(x + 150, 90, 1)
-      this.drawWall(x + 200, 110, 1)
-      this.drawWall(x + (50 * 8), 30, 1)
-      this.drawWall(x + 50 + (50 * 6), 50, 1)
-      this.drawWall(x + 100 + (50 * 4), 70, 1)
-      this.drawWall(x + 150 + (50 * 2), 90, 1)
+      // this.drawWall(x, 30, 1)
+      // this.drawWall(x + 50, 50, 1)
+      // this.drawWall(x + 100, 70, 1)
+      // this.drawWall(x + 150, 90, 1)
+      // this.drawWall(x + 200, 110, 1)
+      // this.drawWall(x + (50 * 8), 30, 1)
+      // this.drawWall(x + 50 + (50 * 6), 50, 1)
+      // this.drawWall(x + 100 + (50 * 4), 70, 1)
+      // this.drawWall(x + 150 + (50 * 2), 90, 1)
     }
     if (tmp == 2) {
       this.drawWall(x, 30, 10)
@@ -172,10 +172,10 @@ class Game {
 
 
   drowCOIN(x, tmp) {
-    this.drawCoin(x, 800, 1)
-    this.drawCoin(x + 1000, 750, 2)
-    this.drawCoin(x + 1500, 800, 1)
-    this.drawCoin(x + 3000, 750, 2)
+    this.drawCoin(x, 550, 1)
+    this.drawCoin(x + 1000, 550, 2)
+    this.drawCoin(x + 1500, 600, 1)
+    this.drawCoin(x + 3000, 550, 2)
   }
 
   drawCoin(x, y, tmp) {
@@ -325,30 +325,30 @@ class Game {
     if (this.drow) {
       if (this.drow) {
         this.drow = false
-        this.drowGreade(400, 1)
-        this.drowGreade(1000, 1)
-        this.drowGreade(2000, 2)
-        this.drowGreade(2500, 1)
-        this.drowGreade(3150, 2)
-        this.drowGreade(4200, 1)
-        this.drowGreade(5000, 2)
-        this.drowGreade(5500, 2)
-        this.drowGreade(6000, 1)
-        this.drowGreade(6800, 2)
-        this.drowGreade(7200, 1)
-        this.drowGreade(8000, 2)
-        this.drowGreade(8500, 1)
-        this.drowGreade(9200, 2)
-        this.drowGreade(10400, 1)
-        this.drowGreade(11500, 2)
-        this.drowGreade(12900, 1)
-        this.drowGreade(13700, 1)
-        this.drowGreade(14300, 2)
-        this.drowGreade(15000, 1)
-        this.drowGreade(16000, 1)
-        this.drowGreade(17900, 2)
-        this.drowGreade(18500, 2)
-        this.drowGreade(19000, 2)
+        // this.drowGreade(400, 1)
+        // this.drowGreade(1000, 1)
+        // this.drowGreade(2000, 2)
+        // this.drowGreade(2500, 1)
+        // this.drowGreade(3150, 2)
+        // this.drowGreade(4200, 1)
+        // this.drowGreade(5000, 2)
+        // this.drowGreade(5500, 2)
+        // this.drowGreade(6000, 1)
+        // this.drowGreade(6800, 2)
+        // this.drowGreade(7200, 1)
+        // this.drowGreade(8000, 2)
+        // this.drowGreade(8500, 1)
+        // this.drowGreade(9200, 2)
+        // this.drowGreade(10400, 1)
+        // this.drowGreade(11500, 2)
+        // this.drowGreade(12900, 1)
+        // this.drowGreade(13700, 1)
+        // this.drowGreade(14300, 2)
+        // this.drowGreade(15000, 1)
+        // this.drowGreade(16000, 1)
+        // this.drowGreade(17900, 2)
+        // this.drowGreade(18500, 2)
+        // this.drowGreade(19000, 2)
         for (let i = 500; i < 19500; i += 1781) {
           this.drowCOIN(i, 1);
         }
@@ -523,17 +523,17 @@ class Game {
     //this.kims = restKim
 
 
-    if (this.mario.x >= this.masiviBisetka.x) {
+    if (this.background.x <= - OTHERS_WIDTH + 1000) {
       this.mario.movements.down = true
+      window.location.replace('./index17.html')
+
       setTimeout(() => {
-        window.location.replace('./index17.html')
 
       }, 2000);
 
     }
 
-
-
+    
     this.blocks.map(el => {
 
 

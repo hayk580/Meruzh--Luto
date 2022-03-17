@@ -321,7 +321,7 @@ class Game {
       this.bag.move()
       this.shaurma.moveright()
 
-
+      this.masiviBisetka.move(this.mario.x)
 
 
 

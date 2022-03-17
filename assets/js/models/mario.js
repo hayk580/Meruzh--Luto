@@ -61,7 +61,9 @@ class Mario {
     this.sounds = {
       fire: new Audio('./assets/sound/fireball.wav'),
       love: new Audio('./assets/sound/love.mp3'),
-      sister: new Audio('./assets/sound/sister.mp3')
+      sister: new Audio('./assets/sound/sister.mp3'),
+     themMusic: new Audio('./assets/sound/mw-theme.mp3')
+
 
     }
   }
@@ -82,8 +84,11 @@ class Mario {
         if (this.flag == 0) { this.sprite.src = './assets/img/littlemeruzh.png' }
         if (this.flag == 1) { this.sprite.src = './assets/img/normal_meruzh.png' }
         if (this.flag == 2) { this.sprite.src = './assets/img/big-meruzh.png' }
+        if(localStorage.getItem('level') != 'final.html')
+        {
+this.sounds.themMusic.play()
 
-
+        }
       }
 
 
@@ -92,6 +97,11 @@ class Mario {
         if (this.flag == 0) { this.sprite.src = './assets/img/l1.png' }
         if (this.flag == 1) { this.sprite.src = './assets/img/l2.png' }
         if (this.flag == 2) { this.sprite.src = './assets/img/l3.png' }
+        if(localStorage.getItem('level') != 'final.html')
+        {
+this.sounds.themMusic.play()
+
+        }
       }
 
 
@@ -176,15 +186,17 @@ class Mario {
   move() {
     this.bullets.forEach(bullet => bullet.move())
 
+    
     if (this.movements.up && !this.isJumping) {
       this.isJumping = true
       this.vy = -9
 
 
-
     } else if (this.isJumping) {
       this.vy += GRAVITY
     }
+
+  
 
     if (this.isDie) {
       this.isDie = true

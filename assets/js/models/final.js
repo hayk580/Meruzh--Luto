@@ -72,7 +72,7 @@ class Game {
     ]
 
     this.wrongAnswers = [
-      "ես՞",
+      "իմ հետ ե՞ս",
       "22",
       "Հա բա ինչ ախպեր",
       "Թաղը որնա՞",
@@ -125,9 +125,9 @@ class Game {
 
 
   start() {
-    localStorage.setItem("level", "index11.html")
+    localStorage.setItem("level", "final.html")
 
-
+    this.mario.sounds.themMusic.pause()
 
     if (!this.drawInterval) {
       if (this.background.x >= -16000)
@@ -357,11 +357,17 @@ class Game {
       if(localStorage.getItem('person') == "meruzh")
       {
         this.background = new Background(this.ctx, this.levels.level15)
+        setTimeout(()=>{
+          window.location.href = 'intro.html'; //Will take you to Google.
 
+        }, 6000)
       }
       else {
       this.background = new Background(this.ctx, this.levels.level16)
+      setTimeout(()=>{
+        window.location.href = 'intro.html'; //Will take you to Google.
 
+      }, 6000)
       }
       this.drno_xp_size = 0
     }
