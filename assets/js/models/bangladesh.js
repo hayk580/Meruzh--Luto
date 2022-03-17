@@ -39,15 +39,15 @@ class Game {
     this.changeHarc = false
     this.harcer = [
       "Բարի օր ապեր",
-      "Քանի տարեկան ե՞ս",
+      "Քանի՞ տարեկան ես",
       "Լավ տղա ե՞ս ախպեր",
-      "էս թաղից ես ապեր՞",
+      "էս թաղից ես ապե՞ր",
       "Մեր քուչի լավերից ում գիդես՞",
       "Ճիշտը քանի հատ ա ըլնում՞",
       "Այսինքն մախ ե՞ս թե գաղափար",
-      "Դու չլնի ռացիստ ես՞",
-      "Ախպերս Շուշանը ասելա չէ, խի էս եկե՞",
-      "ի՞նչ կմախթես մեր խաղի խաղացողներին"
+      "Դու չլնի ռացիստ ե՞ս",
+      "Ախպերս Շուշանը ասելա չէ՞ խի էս եկե",
+      "Ի՞նչ կմախթես մեր խաղի խաղացողներին"
     ]
     let index_answer
     let index_name = localStorage.getItem("person")
@@ -70,7 +70,7 @@ class Game {
     ]
 
     this.wrongAnswers = [
-      "ես՞",
+      "Իմ հետ ե՞ս",
       "22",
       "Հա բա ինչ ախպեր",
       "Թաղը որնա՞",
@@ -101,7 +101,7 @@ class Game {
 
     this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 250, this.canvas.height - 200)
     this.inteligent = [
-      new Inteligent(this.ctx, this.mario.x + 1200, this.mario.y),
+      new Inteligent(this.ctx, this.mario.x + 1400, this.mario.y),
       new Inteligent(this.ctx, this.mario.x + 5500, this.mario.y),
       new Inteligent(this.ctx, this.mario.x + 19500, this.mario.y),
 
@@ -110,58 +110,58 @@ class Game {
     this.alvards = [
 
 
-      // new Alvard(this.ctx, this.mario.x + 2500, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 2650, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 3000, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 3200, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 3600, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 4000, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 4450, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 4820, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 8200, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 8600, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 11350, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 12000, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 12200, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 15000, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 15600, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 19200, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 19400, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 21000, this.mario.y),
-      // new Alvard(this.ctx, this.mario.x + 21500, this.mario.y)
+      new Alvard(this.ctx, this.mario.x + 2500, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 2650, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 3000, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 3200, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 3600, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 4000, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 4450, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 4820, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 8200, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 8600, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 11350, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 12000, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 12200, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 15000, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 15600, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 19200, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 19400, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 21000, this.mario.y),
+      new Alvard(this.ctx, this.mario.x + 21500, this.mario.y)
 
     ]
 
 
 
     this.polices = [
-      // new Police(this.ctx, this.mario.x + 900, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 1200, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 1700, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 1900, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 2100, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 5000, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 5100, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 5700, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 6200, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 6350, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 6700, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 7000, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 7200, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 7400, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 8400, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 13000, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 13200, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 14000, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 14350, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 14700, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 15400, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 16300, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 16500, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 17500, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 17900, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 18400, this.mario.y),
-      // new Police(this.ctx, this.mario.x + 18800, this.mario.y)
+      new Police(this.ctx, this.mario.x + 900, this.mario.y),
+      new Police(this.ctx, this.mario.x + 1200, this.mario.y),
+      new Police(this.ctx, this.mario.x + 1700, this.mario.y),
+      new Police(this.ctx, this.mario.x + 1900, this.mario.y),
+      new Police(this.ctx, this.mario.x + 2100, this.mario.y),
+      new Police(this.ctx, this.mario.x + 5000, this.mario.y),
+      new Police(this.ctx, this.mario.x + 5100, this.mario.y),
+      new Police(this.ctx, this.mario.x + 5700, this.mario.y),
+      new Police(this.ctx, this.mario.x + 6200, this.mario.y),
+      new Police(this.ctx, this.mario.x + 6350, this.mario.y),
+      new Police(this.ctx, this.mario.x + 6700, this.mario.y),
+      new Police(this.ctx, this.mario.x + 7000, this.mario.y),
+      new Police(this.ctx, this.mario.x + 7200, this.mario.y),
+      new Police(this.ctx, this.mario.x + 7400, this.mario.y),
+      new Police(this.ctx, this.mario.x + 8400, this.mario.y),
+      new Police(this.ctx, this.mario.x + 13000, this.mario.y),
+      new Police(this.ctx, this.mario.x + 13200, this.mario.y),
+      new Police(this.ctx, this.mario.x + 14000, this.mario.y),
+      new Police(this.ctx, this.mario.x + 14350, this.mario.y),
+      new Police(this.ctx, this.mario.x + 14700, this.mario.y),
+      new Police(this.ctx, this.mario.x + 15400, this.mario.y),
+      new Police(this.ctx, this.mario.x + 16300, this.mario.y),
+      new Police(this.ctx, this.mario.x + 16500, this.mario.y),
+      new Police(this.ctx, this.mario.x + 17500, this.mario.y),
+      new Police(this.ctx, this.mario.x + 17900, this.mario.y),
+      new Police(this.ctx, this.mario.x + 18400, this.mario.y),
+      new Police(this.ctx, this.mario.x + 18800, this.mario.y)
     ]
 
     this.drnos = new Drno(this.ctx, 2000, this.mario.y)
@@ -337,7 +337,6 @@ class Game {
           if ((police.x - this.mario.x) < 3000) { police.move() }
         })
         this.papers.forEach(paper => paper.move())
-        this.masiviBisetka.move()
       }, this.fps);
     }
 
@@ -462,7 +461,7 @@ class Game {
     this.ctx.font = '18px Arial'
     this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
     this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
-    this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
+    //this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     this.ctx.restore()
   }
 
@@ -470,6 +469,10 @@ class Game {
 
     if (this.background.x <= -16400 && this.answer_count >= 9) {
       this.sounds.house.play()
+      setTimeout(()=>{
+        window.location.href = 'final.html'; //Will take you to Google.
+
+      },5000)
     }
     if (!this.mario.drnos_question && !this.mario.meeting) {
       this.mario.move()
@@ -505,7 +508,6 @@ class Game {
       this.polices.forEach(polices => polices.moveRigth())
       this.blocks.forEach(blocks => blocks.move())
       this.papers.forEach(papers => papers.move(this.mario.x))
-      this.masiviBisetka.move(this.mario.x)
       this.kims.forEach(kim => kim.move())
       this.bag.move()
       this.shaurma.moveright()
@@ -757,6 +759,10 @@ class Game {
         this.sounds.theme.pause()
         this.sounds.theme2.play()
         this.mario.isDie = true
+        setTimeout(() => {
+          window.location.href = "gameover.html"
+
+        }, 2000)
         this.mario.animateDie()
         this.sounds.tati.play()
       }
@@ -784,6 +790,10 @@ class Game {
         this.sounds.theme.pause()
         this.sounds.theme2.play()
         this.mario.isDie = true
+        setTimeout(() => {
+          window.location.href = "gameover.html"
+
+        }, 2000)
         this.mario.animateDie()
       }
     }

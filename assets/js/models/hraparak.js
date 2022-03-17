@@ -218,7 +218,6 @@ class Game {
           if ((police.x - this.mario.x) < 3000) { police.move() }
         })
         this.papers.forEach(paper => paper.move())
-        this.masiviBisetka.move()
       }, this.fps);
     }
 
@@ -262,7 +261,7 @@ class Game {
     this.ctx.font = '18px Arial'
     this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
     this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
-    this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
+    //this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     this.ctx.restore()
   }
 

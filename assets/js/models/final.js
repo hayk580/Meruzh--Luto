@@ -34,7 +34,8 @@ class Game {
       level12: './assets/img/Barekamutyun-01.png',
       level13: './assets/img/Baghramyan-01.png',
       level14: './assets/img/final.png',
-      level15: './assets/img/meruzh-shusho.png'
+      level15: './assets/img/meruzh-shusho.png',
+      level16: './assets/img/sister.png'
     }
     this.harcerCount = 0
     this.changeHarc = false
@@ -353,7 +354,15 @@ class Game {
     if (this.mario.collidesWithAlvard(this.shusho)) {
       this.shusho.y = -30000
       this.mario.meeting = true
-      this.background = new Background(this.ctx, this.levels.level15)
+      if(localStorage.getItem('person') == "meruzh")
+      {
+        this.background = new Background(this.ctx, this.levels.level15)
+
+      }
+      else {
+      this.background = new Background(this.ctx, this.levels.level16)
+
+      }
       this.drno_xp_size = 0
     }
 

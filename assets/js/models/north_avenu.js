@@ -125,8 +125,13 @@ class Game {
       alvard: new Audio('./assets/sound/coin.wav'),
       die: new Audio('./assets/sound/die.mp3'),
       tati: new Audio('./assets/sound/tati.wav'),
-      kim_come: new Audio('./assets/sound/Heartbeat Heart Beat (Loopable).wav'),
-      inteligent_sound: new Audio('./assets/sound/Male Anger Scream.mp3')
+      kim_come: new Audio('./assets/sound/kimcome.wav'),
+      inteligent_sound: new Audio('./assets/sound/Male Anger Scream.mp3'),
+      open_tuxt_sound: new Audio('./assets/sound/Tuxt bacel.wav'),
+      add_bichok: new Audio('./assets/sound/Vibrant_Slot_Change_Lock_1.wav'),
+      mario_urax: new Audio('./assets/sound/bigmario.wav'),
+      mario_txur: new Audio('./assets/sound/smallmario.wav'),
+      kill: new Audio('./assets/sound/headjump.wav'),
     }
   }
 
@@ -206,7 +211,6 @@ class Game {
         this.alvards.forEach(alvard => alvard.move())
         this.polices.forEach(police => police.move())
         this.papers.forEach(paper => paper.move())
-        this.masiviBisetka.move()
       }, this.fps);
     }
 
@@ -276,7 +280,6 @@ class Game {
       this.polices.forEach(polices => polices.moveRigth())
       this.blocks.forEach(blocks => blocks.move())
       this.papers.forEach(papers => papers.move(this.mario.x))
-      this.masiviBisetka.move(this.mario.x)
       this.kims.forEach(kim => kim.move())
       this.bag.move()
     }

@@ -121,7 +121,11 @@ class Game {
       tati: new Audio('./assets/sound/tati.wav'),
       kim_come: new Audio('./assets/sound/kimcome.wav'),
       inteligent_sound: new Audio('./assets/sound/Male Anger Scream.mp3'),
-      open_tuxt_sound: new Audio('./assets/sound/Tuxt bacel.wav')
+      open_tuxt_sound: new Audio('./assets/sound/Tuxt bacel.wav'),
+      add_bichok: new Audio('./assets/sound/Vibrant_Slot_Change_Lock_1.wav'),
+      mario_urax: new Audio('./assets/sound/bigmario.wav'),
+      mario_txur: new Audio('./assets/sound/smallmario.wav'),
+      kill: new Audio('./assets/sound/headjump.wav'),
 
     }
   }
@@ -201,7 +205,6 @@ class Game {
         this.alvards.forEach(alvard => alvard.move())
         this.polices.forEach(police => police.move())
         this.papers.forEach(paper => paper.move())
-        this.masiviBisetka.move()
       }, this.fps);
     }
 
@@ -271,7 +274,6 @@ class Game {
       this.polices.forEach(polices => polices.moveRigth())
       this.blocks.forEach(blocks => blocks.move())
       this.papers.forEach(papers => papers.move(this.mario.x))
-      this.masiviBisetka.move(this.mario.x)
       this.kims.forEach(kim => kim.move())
       this.bag.move()
       this.shaurma.moveright()
@@ -405,7 +407,7 @@ class Game {
 
     this.coins = restCoins
     this.ctx.font = '18px Arial'
-    this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
+   // this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
 
     if (this.mario.collidesWithBag(this.bag)) {
       this.shaurma.flag = true;

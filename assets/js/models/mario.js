@@ -60,7 +60,8 @@ class Mario {
 
     this.sounds = {
       fire: new Audio('./assets/sound/fireball.wav'),
-      love: new Audio('./assets/sound/love.mp3')
+      love: new Audio('./assets/sound/love.mp3'),
+      sister: new Audio('./assets/sound/sister.mp3')
 
     }
   }
@@ -102,7 +103,16 @@ class Mario {
         // this.x = 0
         // this.width = window.innerWidth
         // this.height = window.innerHeight
-        this.sounds.love.play()
+
+        if(localStorage.getItem('person') == "meruzh")
+        {
+          this.sounds.love.play()
+  
+        }
+
+        else {
+          this.sounds.sister.play()
+        }
         // this.sprite.horizontalFrames = 1
         // this.sprite.verticalFrames = 1
       }
@@ -339,8 +349,8 @@ class Mario {
 
 
   collidesWithAlvard(element) {
-    return this.x < element.x + element.width &&
-      this.x + this.width > element.x &&
+    return this.x + 50 < element.x  + element.width &&
+      this.x + this.width - 50 > element.x &&
       this.y < element.y + element.height &&
       this.y + this.height > element.y
   }
@@ -353,9 +363,9 @@ class Mario {
   }
 
   HeadJump(element) {
-    return this.x + this.width < element.x + element.width + 8 &&
-      this.x > element.x - 8 &&
-      this.y + this.height < element.y + 8
+    return this.x + this.width < element.x + element.width + 20 &&
+      this.x > element.x - 20 &&
+      this.y + this.height < element.y + 20
       && this.y + this.height > element.y
 
   }

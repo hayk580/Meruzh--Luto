@@ -145,6 +145,7 @@ class Game {
       mario_urax: new Audio('./assets/sound/bigmario.wav'),
       mario_txur: new Audio('./assets/sound/smallmario.wav'),
       kill: new Audio('./assets/sound/headjump.wav'),
+    
 
     }
   }
@@ -297,7 +298,7 @@ class Game {
     this.ctx.font = '18px Arial'
     this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
     this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
-    this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
+ //   this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     this.ctx.restore()
   }
 
@@ -322,7 +323,6 @@ class Game {
       this.polices.forEach(polices => polices.moveRigth())
       this.blocks.forEach(blocks => blocks.move())
       this.papers.forEach(papers => papers.move(this.mario.x))
-      this.masiviBisetka.move()
       this.kims.forEach(kim => kim.move())
       this.bag.move()
       this.shaurma.moveright()
