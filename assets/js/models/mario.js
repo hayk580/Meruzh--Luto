@@ -22,11 +22,12 @@ class Mario {
     if (this.flag == 1) { this.sprite.src = './assets/img/l1.png' }
     if (this.flag == 0) { this.sprite.src = './assets/img/l2.png' }
     if (this.flag == 2) { this.sprite.src = './assets/img/l3.png' }
-    if (this.meeting) {
-      this.sprite.src = './assets/img/love.png'
-      this.sprite.horizontalFrames = 1
-      this.sprite.verticalFrames = 1
-    }
+    // if (this.meeting) {
+    //   this.sprite.src = './assets/img/love.png'
+
+    //   this.sprite.horizontalFrames = 1
+    //   this.sprite.verticalFrames = 1
+    // }
     this.sprite.src = './assets/img/l1.png'
     this.sprite.isReady = false
     this.sprite.horizontalFrames = 4
@@ -58,7 +59,9 @@ class Mario {
     this.bullets = []
 
     this.sounds = {
-      fire: new Audio('./assets/sound/fireball.wav')
+      fire: new Audio('./assets/sound/fireball.wav'),
+      love: new Audio('./assets/sound/love.mp3')
+
     }
   }
 
@@ -93,9 +96,15 @@ class Mario {
 
 
       if (this.meeting) {
-        this.sprite.src = './assets/img/love.png'
-        this.sprite.horizontalFrames = 1
-        this.sprite.verticalFrames = 1
+        // this.sprite.src = './assets/img/meruzh-shusho.png'
+
+        // this.y = 0
+        // this.x = 0
+        // this.width = window.innerWidth
+        // this.height = window.innerHeight
+        this.sounds.love.play()
+        // this.sprite.horizontalFrames = 1
+        // this.sprite.verticalFrames = 1
       }
       if (!this.meeting) {
         this.ctx.drawImage(
@@ -111,9 +120,9 @@ class Mario {
           this.turn
         )
       }
-      else {
-        this.ctx.drawImage(this.sprite, this.x, this.y - 150)
-      }
+      // else {
+      //   this.ctx.drawImage(this.sprite, this.x, this.y - 150)
+      // }
 
       this.sprite.drawCount++
       this.bullets.forEach(bullet => bullet.draw())
@@ -169,7 +178,7 @@ class Mario {
 
     if (this.isDie) {
       this.isDie = true
-      this.vy = -0.3
+      this.vy = -3
     }
 
 
@@ -352,8 +361,8 @@ class Mario {
   }
 
   collidesWithBlocks(element) {
-    return this.x < element.x + element.width &&
-      this.x + this.width > element.x &&
+    return this.x < element.x + element.width / 2 &&
+      this.x + this.width / 2 > element.x &&
       this.y < element.y + element.height &&
       this.y + this.height > element.y
 

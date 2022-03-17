@@ -1,7 +1,7 @@
 class Drno {
   constructor(ctx, x, y) {
     this.ctx = ctx
-    
+
     this.x = x
     this.y = y
     this.vy = 0.7
@@ -35,7 +35,7 @@ class Drno {
   }
 
   draw() {
-     
+
     if (this.isReady()) {
       this.ctx.drawImage(
         this.sprite,
@@ -49,7 +49,7 @@ class Drno {
         this.height
       )
       this.sprite.drawCount++
-      if(!this.die) {
+      if (!this.die) {
         this.animate()
       }
     }
@@ -82,49 +82,49 @@ class Drno {
     if (stop === false) {
       this.x = 0
     }
-}
+  }
 
-fight_move(el , canvas_height) {
-  if (this.turn) {
-    this.sprite.horizontalFrameIndex = 1
-    if(this.x < 700) {
-      this.sprite.verticalFrameIndex = 0
+  fight_move(el, canvas_height) {
+    if (this.turn) {
+      this.sprite.horizontalFrameIndex = 1
+      if (this.x < 700) {
+        this.sprite.verticalFrameIndex = 0
+      }
+      else if (this.x > 700) {
+        this.sprite.verticalFrameIndex = 1
+      }
+      this.vy = 0
+      this.y = canvas_height - 10
+      this.x += SPEED * 2.7
     }
-    else if (this.x > 700) {
-      this.sprite.verticalFrameIndex = 1
+    else if (!this.turn) {
+      this.sprite.verticalFrameIndex = 2
+      this.x -= ALVARDSPEED
     }
-    this.vy = 0
-    this.y = canvas_height - 10
-    this.x += SPEED * 2.7
-  }
-  else if (!this.turn) {
-    this.sprite.verticalFrameIndex = 2
-    this.x -= ALVARDSPEED
-  }
-  
-  if(this.vy >= 30) {
-    this.vy = 2.7
-  }
-  this.y -= this.vy
-  this.vy -= 0.9
 
-  if (this.y >= canvas_height) {
+    if (this.vy >= 30) {
+      this.vy = 2.7
+    }
+    this.y -= this.vy
+    this.vy -= 0.9
+
+    if (this.y >= canvas_height) {
       this.vy *= -1;
-  }
-  if (this.x >= el.x + 850) {
+    }
+    if (this.x >= el.x + 400) {
       this.turn = false;
-  }
-  else if (this.x <= 30) {
+    }
+    else if (this.x <= 30) {
       this.turn = true;
+    }
   }
-}
 
-finish_move() {
-  this.turn = false
-  this.y -= 5
-  this.sprite.horizontalFrameIndex = 3
-  this.sprite.verticalFrameIndex = 3
-}
+  finish_move() {
+    this.turn = false
+    this.y -= 5
+    this.sprite.horizontalFrameIndex = 3
+    this.sprite.verticalFrameIndex = 3
+  }
 
   onKeyEvent(event) {
     const status = event.type === 'keydown'

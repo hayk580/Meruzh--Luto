@@ -49,8 +49,15 @@ class Game {
       "Ախպերս Շուշանը ասելա չէ, խի էս եկե՞",
       "ի՞նչ կմախթես մեր խաղի խաղացողներին"
     ]
+    let index_answer
+    let index_name = localStorage.getItem("person")
+    if (index_name == "meruzh") {
+      index_answer = "ապեր չի անունս Մերուժա"
+    } else {
+      index_answer = "ապեր չի անունս Լյութոա"
+    }
     this.answers = [
-      "ապեր չի անունս Մերուժա",
+      index_answer,
       "տարիքն ինչ կապ ունի",
       "շրջապատիցս հարցրա",
       "սաղե մեր թաղերնա ապեր",
@@ -61,6 +68,7 @@ class Game {
       "ախչկա ասածը ասնավանի չի",
       "Արի ստէ ասեմ"
     ]
+
     this.wrongAnswers = [
       "ես՞",
       "22",
@@ -84,7 +92,7 @@ class Game {
     this.bag = new Bag(this.ctx, 1500, this.canvas.height - 400)
     this.drno = new Drno()
     this.shaurma = new Shaurma(this.ctx, this.bag.x + 20, this.bag.y - 20)
-    this.shusho = new Shushan(this.ctx, 19400, this.canvas.height - 100)
+    this.shusho = new Shushan(this.ctx, OTHERS_WIDTH - 50, this.canvas.height - 100)
     this.paperPoints = 0
 
     this.coins = [
@@ -102,58 +110,58 @@ class Game {
     this.alvards = [
 
 
-      new Alvard(this.ctx, this.mario.x + 2500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 2650, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 3000, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 3200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 3600, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 4000, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 4450, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 4820, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 8200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 8600, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 11350, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 12000, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 12200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 15000, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 15600, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 19200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 19400, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 21000, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 21500, this.mario.y)
+      // new Alvard(this.ctx, this.mario.x + 2500, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 2650, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 3000, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 3200, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 3600, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 4000, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 4450, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 4820, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 8200, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 8600, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 11350, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 12000, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 12200, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 15000, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 15600, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 19200, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 19400, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 21000, this.mario.y),
+      // new Alvard(this.ctx, this.mario.x + 21500, this.mario.y)
 
     ]
 
 
 
     this.polices = [
-      new Police(this.ctx, this.mario.x + 900, this.mario.y),
-      new Police(this.ctx, this.mario.x + 1200, this.mario.y),
-      new Police(this.ctx, this.mario.x + 1700, this.mario.y),
-      new Police(this.ctx, this.mario.x + 1900, this.mario.y),
-      new Police(this.ctx, this.mario.x + 2100, this.mario.y),
-      new Police(this.ctx, this.mario.x + 5000, this.mario.y),
-      new Police(this.ctx, this.mario.x + 5100, this.mario.y),
-      new Police(this.ctx, this.mario.x + 5700, this.mario.y),
-      new Police(this.ctx, this.mario.x + 6200, this.mario.y),
-      new Police(this.ctx, this.mario.x + 6350, this.mario.y),
-      new Police(this.ctx, this.mario.x + 6700, this.mario.y),
-      new Police(this.ctx, this.mario.x + 7000, this.mario.y),
-      new Police(this.ctx, this.mario.x + 7200, this.mario.y),
-      new Police(this.ctx, this.mario.x + 7400, this.mario.y),
-      new Police(this.ctx, this.mario.x + 8400, this.mario.y),
-      new Police(this.ctx, this.mario.x + 13000, this.mario.y),
-      new Police(this.ctx, this.mario.x + 13200, this.mario.y),
-      new Police(this.ctx, this.mario.x + 14000, this.mario.y),
-      new Police(this.ctx, this.mario.x + 14350, this.mario.y),
-      new Police(this.ctx, this.mario.x + 14700, this.mario.y),
-      new Police(this.ctx, this.mario.x + 15400, this.mario.y),
-      new Police(this.ctx, this.mario.x + 16300, this.mario.y),
-      new Police(this.ctx, this.mario.x + 16500, this.mario.y),
-      new Police(this.ctx, this.mario.x + 17500, this.mario.y),
-      new Police(this.ctx, this.mario.x + 17900, this.mario.y),
-      new Police(this.ctx, this.mario.x + 18400, this.mario.y),
-      new Police(this.ctx, this.mario.x + 18800, this.mario.y)
+      // new Police(this.ctx, this.mario.x + 900, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 1200, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 1700, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 1900, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 2100, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 5000, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 5100, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 5700, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 6200, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 6350, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 6700, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 7000, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 7200, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 7400, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 8400, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 13000, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 13200, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 14000, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 14350, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 14700, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 15400, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 16300, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 16500, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 17500, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 17900, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 18400, this.mario.y),
+      // new Police(this.ctx, this.mario.x + 18800, this.mario.y)
     ]
 
     this.drnos = new Drno(this.ctx, 2000, this.mario.y)
@@ -306,7 +314,7 @@ class Game {
         else {
           this.mario.drnos_question = false;
         }
-        if (!this.mario.drnos_question && !this.drno_die && this.drnos.finish_flag == false && this.background.x <= -17451) {
+        if (!this.mario.drnos_question && !this.drno_die && this.drnos.finish_flag == false && this.background.x <= -17951) {
           this.drnos.move()
         }
 
@@ -544,11 +552,15 @@ class Game {
       }
     }
     this.mario.onKeyEvent(event)
-    if (!this.mario.drnos_question) {
+    if (!this.mario.drnos_question && this.drno_xp_size != 0) {
       this.background.onKeyEvent(event)
       this.shusho.onKeyEvent(event)
     }
 
+    if (!this.mario.drnos_question) {
+      this.background.onKeyEvent(event)
+      this.shusho.onKeyEvent(event)
+    }
     this.bag.onKeyEvent(event)
     this.shaurma.onKeyEvent(event)
     this.coins.forEach(coin => coin.onKeyEvent(event))
