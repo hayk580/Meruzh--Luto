@@ -1,4 +1,4 @@
-class   Game {
+class Game {
 
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId)
