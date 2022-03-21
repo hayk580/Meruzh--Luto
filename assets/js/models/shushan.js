@@ -37,7 +37,7 @@ class Shushan {
 
   move() {
     if (this.movements.right) {
-      this.x -= 2
+      this.x -= SPEED 
     }
   }
 

@@ -8,9 +8,9 @@ const KEY_T = 84
 
 const MOVEMENT_FRAMES = 8
 const MOVEMENT_FRAMES_KIMS = 23
-const SPEED = 4 // 4
+const SPEED = 4.5
 const ALVARDSPEED = 0.7
-const GRAVITY = 0.2
+const GRAVITY = 0.7
 
 const MASIV_WIDTH = 19892
 const KASKAD_WIDTH = 19895

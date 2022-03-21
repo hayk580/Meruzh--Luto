@@ -3,7 +3,6 @@ class Fireball {
     this.ctx = ctx
     this.x = x
     this.vx = SPEED
-
     this.y = y
     this.maxY = maxY
     this.vy = SPEED
@@ -50,7 +49,16 @@ class Fireball {
   }
 
   move() {
-    this.x += this.vx
+      this.x += this.vx
+    this.y += this.vy
+    this.vy += GRAVITY
+
+    if (this.y >= (this.maxY - this.height)) {
+      this.vy *= -1;
+    }
+  }
+  moveleft() {
+      this.x -= this.vx
     this.y += this.vy
     this.vy += GRAVITY
 
@@ -67,7 +75,6 @@ class Fireball {
       this.sprite.drawCount = 0
     }
   }
-
 
 
   collidesWithAnmie(element) {

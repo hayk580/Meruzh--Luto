@@ -26,7 +26,7 @@ class Shaurma {
         )
     }
 
-    moveright() {
+    moveRight() {
         if (this.movements.right) {
             this.x -= SPEED
         }
@@ -45,14 +45,13 @@ class Shaurma {
     }
     move(canvas_height) {
         if (this.turn) {
-            this.x += this.vx
+            this.x += SPEED * 2
         }
         else if (!this.turn) {
             this.x -= this.vx;
         }
         if (this.y <= 10) {
-            this.y += this.vy
-
+            this.vy *= -1
         }
         this.y -= this.vy
         this.vy -= GRAVITY

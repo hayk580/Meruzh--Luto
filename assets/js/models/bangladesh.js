@@ -8,18 +8,6 @@ class Game {
     this.fps = 1040 / 60
     this.drawInterval = undefined
     this.shaurmacount = 1
-    this.answer_x = 350
-    this.answer_y = 1000
-    this.mario_xp_size = 10
-    this.mario_move_end = false
-    this.mario_xp = "❤❤❤❤❤❤❤❤❤❤"
-    this.drno_xp_size = 10
-    this.drno_xp = "❤❤❤❤❤❤❤❤❤❤"
-    this.answer_count = 10
-    this.drno_die_count = 1
-    this.drno_die = false
-    this.took = false
-    this.is_true_answer = true
     this.levels = {
       level1: './assets/img/masiv.png',
       level2: './assets/img/Komitas-01.png',
@@ -35,52 +23,7 @@ class Game {
       level12: './assets/img/Barekamutyun-01.png',
       level13: './assets/img/Baghramyan-01.png'
     }
-    this.harcerCount = 0
-    this.changeHarc = false
-    this.harcer = [
-      "Բարի օր ապեր",
-      "Քանի՞ տարեկան ես",
-      "Լավ տղա ե՞ս ախպեր",
-      "էս թաղից ես ապե՞ր",
-      "Մեր քուչի լավերից ում գիդես՞",
-      "Ճիշտը քանի հատ ա ըլնում՞",
-      "Այսինքն մախ ե՞ս թե գաղափար",
-      "Դու չլնի ռացիստ ե՞ս",
-      "Ախպերս Շուշանը ասելա չէ՞ խի էս եկե",
-      "Ի՞նչ կմախթես մեր խաղի խաղացողներին"
-    ]
-    let index_answer
-    let index_name = localStorage.getItem("person")
-    if (index_name == "meruzh") {
-      index_answer = "ապեր չի անունս Մերուժա"
-    } else {
-      index_answer = "ապեր չի անունս Լյութոա"
-    }
-    this.answers = [
-      index_answer,
-      "տարիքն ինչ կապ ունի",
-      "շրջապատիցս հարցրա",
-      "սաղե մեր թաղերնա ապեր",
-      "Չխկոենց",
-      "կախվածա compiler-ից",
-      "մախի դեմ մախ, գաղափարի դեմ գաղափար",
-      "Չե ապեր մասիվցի ենք",
-      "ախչկա ասածը ասնավանի չի",
-      "Արի ստէ ասեմ"
-    ]
-
-    this.wrongAnswers = [
-      "Իմ հետ ե՞ս",
-      "22",
-      "Հա բա ինչ ախպեր",
-      "Թաղը որնա՞",
-      "Ընկեր Պետրոսյանին",
-      "Մի քանի",
-      "Ես գաղափարախոս տղա եմ",
-      "Իհարկե ոչ",
-      "Գիտեմ, ինձ էլ ա ասել չէ",
-      "Թող լավ ըլնեն հորս արև"
-    ]
+  
     this.background = new Background(this.ctx, this.levels.level11)
     this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
     this.alvardTati = new Alvard()
@@ -90,9 +33,7 @@ class Game {
     this.nextLevel = undefined
     this.paperAnimation = undefined
     this.bag = new Bag(this.ctx, 1500, this.canvas.height - 400)
-    this.drno = new Drno()
     this.shaurma = new Shaurma(this.ctx, this.bag.x + 20, this.bag.y - 20)
-    this.shusho = new Shushan(this.ctx, OTHERS_WIDTH - 50, this.canvas.height - 100)
     this.paperPoints = 0
 
     this.coins = [
@@ -164,7 +105,6 @@ class Game {
       new Police(this.ctx, this.mario.x + 18800, this.mario.y)
     ]
 
-    this.drnos = new Drno(this.ctx, 2000, this.mario.y)
 
     this.kims = [
       new Kim(this.ctx, this.mario.x + 2100, this.mario.y - 20),
@@ -199,10 +139,6 @@ class Game {
       tati: new Audio('./assets/sound/tati.wav'),
       kim_come: new Audio('./assets/sound/kimcome.wav'),
       inteligent_sound: new Audio('./assets/sound/Male Anger Scream.mp3'),
-      took_sound: new Audio('./assets/sound/spit.mp3'),
-      drno_trvr: new Audio('./assets/sound/Monster.mp3'),
-      chisht: new Audio('./assets/sound/HumanCrowd.wav'),
-      sxal: new Audio('./assets/sound/CrowdReaction.wav'),
       house: new Audio('./assets/sound/Halloween.wav'),
       open_tuxt_sound: new Audio('./assets/sound/Tuxt bacel.wav'),
       add_bichok: new Audio('./assets/sound/Vibrant_Slot_Change_Lock_1.wav'),
@@ -212,17 +148,18 @@ class Game {
     }
   }
 
-  drowGreade(x, tmp) {
+  drowGreade(x, tmp) {                                         
     if (tmp == 1) {
       this.drawWall(x, 30, 1)
-      this.drawWall(x + 50, 50, 1)
-      this.drawWall(x + 100, 70, 1)
-      this.drawWall(x + 150, 90, 1)
-      this.drawWall(x + 200, 110, 1)
-      this.drawWall(x + (50 * 8), 30, 1)
-      this.drawWall(x + 50 + (50 * 6), 50, 1)
-      this.drawWall(x + 100 + (50 * 4), 70, 1)
-      this.drawWall(x + 150 + (50 * 2), 90, 1)
+      this.drawWall(x + 58, 50, 1)
+      this.drawWall(x + 116, 70, 1)
+      this.drawWall(x + 174, 90, 1)
+      this.drawWall(x + 232, 110, 1)
+      this.drawWall(x + (58 * 8), 30, 1)
+      this.drawWall(x + 58 + (58 * 6), 50, 1)
+      this.drawWall(x + 116 + (58 * 4), 70, 1)
+      this.drawWall(x + 174 + (58 * 2), 90, 1)
+
     }
     if (tmp == 2) {
       this.drawWall(x, 30, 10)
@@ -236,7 +173,7 @@ class Game {
 
 
   drowCOIN(x) {
-    this.drawCoin(0, this.canvas.height - 800, 1)
+    this.drawCoin(0, this.canvas.height - 200, 1)
     this.drawCoin(890, this.canvas.height - 130, 1)
     this.drawCoin(3600, this.canvas.height - 300, 2)
     this.drawCoin(4050, this.canvas.height - 300, 2)
@@ -308,26 +245,6 @@ class Game {
           }
         })
 
-        if (this.drnos.x - this.mario.x <= 500 && this.answer_count != 0) {
-          this.mario.drnos_question = true;
-        }
-        else {
-          this.mario.drnos_question = false;
-        }
-        if (!this.mario.drnos_question && !this.drno_die && this.drnos.finish_flag == false && this.background.x <= -17951) {
-          this.drnos.move()
-        }
-
-        if (this.drno_die == false && this.answer_count == 0 && !this.mario.isDie) {
-          this.drnos.fight_move(this.mario, this.canvas.height - 100)
-          this.sounds.drno_trvr.play()
-          //this.sounds.drno_trvr.currentTime = 0
-        }
-
-        if (this.drno_die) {
-          this.drnos.finish_move()
-        }
-
         this.alvards.forEach(alvard => {
           if ((alvard.x - this.mario.x) < 3000) {
             alvard.move()
@@ -349,9 +266,6 @@ class Game {
 
   draw() {
     this.background.draw()
-    this.shusho.draw()
-    this.drnos.draw()
-
     this.kims.forEach(kims => kims.draw())
 
     if (this.bag.flag) {
@@ -375,84 +289,6 @@ class Game {
 
     })
     this.mario.draw()
-    if (this.answer_count == 0) {
-      this.mario.drnos_question = false
-    }
-
-    if (this.mario.drnos_question && this.answer_count != 0) {
-      this.dialog = new Image()
-      this.finish_him = new Audio('./assets/sound/finish-him.mp3')
-      if (this.mario_xp != 0 && this.drno_xp != 0 && this.drnos.x - this.mario.x <= 600) {
-        this.ctx.font = '25px Arial'
-        this.ctx.fillText(` ${this.mario_xp} `, 300, 75)
-        this.ctx.fillText(` ${this.drno_xp}`, 900, 75)
-        this.mario.drnos_question = false
-      }
-      this.dialog.src = './assets/img/questions.png'
-      if (!this.is_true_answer) {
-        if (this.changeHarc && this.answer_y != 1000) {
-          this.harcerCount++
-        }
-        if (this.answer_y == 240) {
-          this.sounds.sxal.play()
-          this.mario_xp_size--
-          this.mario_xp = this.mario_xp.substring(0, this.mario_xp_size);
-          this.answer_count--
-        }
-        else if (this.answer_y == 305) {
-          this.sounds.chisht.play()
-          this.drno_xp_size--
-          this.drno_xp = this.drno_xp.substring(0, this.drno_xp_size)
-          this.answer_count--
-        }
-        this.answer_y = 1000
-      }
-
-      if (this.harcerCount == 10) {
-        this.harcerCount = 0
-      }
-      this.ctx.drawImage(this.dialog, 250, 50, 725, 302)
-      this.mario.movements.right = false
-      this.ctx.font = '20px Arial'
-      this.ctx.textAlign = "start"
-      this.ctx.fillStyle = "white"
-      this.ctx.fillText(`${this.harcer[this.harcerCount]} `, 400, 140)
-      this.ctx.fillText(`${this.wrongAnswers[this.harcerCount]} `, 400, 230)
-      this.ctx.font = '37px Arial'
-      this.ctx.fillText(`✯`, this.answer_x, this.answer_y)
-      this.ctx.font = '20px Arial'
-      this.ctx.fillText(`${this.answers[this.harcerCount]} `, 400, 300)
-    }
-    if ((this.mario_xp != 0 || this.drno_xp != 0) && this.drnos.x - this.mario.x <= 800) {
-      this.ctx.font = '25px Arial'
-      this.ctx.fillText(` ${this.mario_xp} `, 300, 75)
-      this.ctx.fillText(` ${this.drno_xp}`, 900, 75)
-      this.mario.drnos_question = false
-    }
-    this.changeHarc = false
-    this.drno_die = false
-    if (this.mario_xp_size == 0) {
-      this.sounds.theme.pause()
-      this.sounds.theme2.play()
-      this.drnos.finish_flag = true
-      this.mario.flag = 0
-      this.mario.isDie = true
-      this.mario.animateDie()
-    }
-    else if (this.drno_xp_size == 0) {
-      this.drno_die = true
-      this.drnos.die = true
-      if (this.drno_die_count == 1) {
-        this.finish_him.play()
-        this.drno_die_count--
-      }
-
-      if (this.took && this.drno_xp_size == 0)
-        this.sounds.took_sound.play()
-      this.took = false
-    }
-
-    this.is_true_answer = true
     this.polices.forEach(polices => polices.draw())
     this.pointsCoin.draw()
 
@@ -461,40 +297,28 @@ class Game {
     this.ctx.font = '18px Arial'
     this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
     this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
-    //this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     this.ctx.restore()
   }
 
   move() {
-
-    if (this.background.x <= -16400 && this.answer_count >= 9) {
+    
+    if(this.background.x <= -16400) {
       this.sounds.house.play()
-      setTimeout(()=>{
-        window.location.href = 'final.html'; //Will take you to Google.
-
-      },5000)
+      setTimeout(() => {
+        window.location.href = 'final.html';
+      },3000)
     }
-    if (!this.mario.drnos_question && !this.mario.meeting) {
-      this.mario.move()
-    }
-
-    if (this.mario.drnos_question) {
-      this.mario.resetAnimation()
-    }
-
-    if (this.mario.x === this.mario.maxX && this.mario.isDie == false) {
-      if (this.background.x >= -17800) {
-        this.background.move()
-      }
-      if (this.background.x < -17800) {
-        this.mario.maxX = 1700
-      }
+    
+    if (this.mario.x === this.mario.maxX && this.mario.isDie == false && this.mario.let_move) {  //let_move avelacnel
+      this.background.move()
       this.coins.forEach(coins => coins.move())
       this.alvards.forEach(alvards => alvards.stop = false)
       this.alvardTati.stop = false
       this.alvards.forEach(alvards => alvards.moveRigth())
+      this.polices.forEach(polices => polices.moveRigth())
 
       if (this.inteligent.afraid) {
+
         this.inteligent.forEach(inteligent => inteligent.moveLeft())
       }
       else {
@@ -505,64 +329,20 @@ class Game {
           }
         })
       }
-      this.polices.forEach(polices => polices.moveRigth())
       this.blocks.forEach(blocks => blocks.move())
       this.papers.forEach(papers => papers.move(this.mario.x))
       this.kims.forEach(kim => kim.move())
       this.bag.move()
-      this.shaurma.moveright()
-      this.shusho.move()
+      this.shaurma.moveRight()                                  //avelacnl shaurma bag
+      this.masiviBisetka.move(this.mario.x)
     }
-
-
-    if ((this.mario.x - this.drno.x >= 1100) && (this.mario_xp_size == 10 && this.drno_xp_size == 10)) {
-      this.mario.movements.down = true
-    }
-
-    if (this.mario.drnos_question && this.answer_count != 0) {
-      this.drnos.sprite.horizontalFrameIndex = 0
-      this.drnos.sprite.verticalFrameIndex = 2
-    }
+    this.mario.move()
   }
 
   onKeyEvent(event) {
-    if (this.mario.drnos_question) {
-      const status = event.type === 'keydown'
-      switch (event.keyCode) {
-        case KEY_UP:
-          this.answer_y = 240
-          break;
-        case KEY_DOWN:
-          this.answer_y = 305
-          break;
-        case KEY_ENTER:
-          this.is_true_answer = false
-          this.changeHarc = true
-          break;
-
-        default:
-          break;
-      }
-    }
-    else if (!this.mario.drnos_question) {
-      const status = event.type === 'keydown'
-      switch (event.keyCode) {
-        case KEY_T:
-          this.took = true
-        default:
-          break;
-      }
-    }
+   
     this.mario.onKeyEvent(event)
-    if (!this.mario.drnos_question && this.drno_xp_size != 0) {
-      this.background.onKeyEvent(event)
-      this.shusho.onKeyEvent(event)
-    }
-
-    if (!this.mario.drnos_question) {
-      this.background.onKeyEvent(event)
-      this.shusho.onKeyEvent(event)
-    }
+    this.background.onKeyEvent(event)
     this.bag.onKeyEvent(event)
     this.shaurma.onKeyEvent(event)
     this.coins.forEach(coin => coin.onKeyEvent(event))
@@ -572,7 +352,6 @@ class Game {
     this.blocks.forEach(blocks => blocks.onKeyEvent(event))
     this.papers.forEach(papers => papers.onKeyEvent(event))
     this.masiviBisetka.onKeyEvent(event)
-    this.drnos.onKeyEvent(event)
   }
 
   checkCollisions() {
@@ -613,14 +392,7 @@ class Game {
       this.drowCOIN();
     }
 
-    if (this.mario_xp_size != 10 && this.drno_xp_size != 10) {
-      if (this.mario.collidesWithAlvard(this.drnos)) {
-        this.drnos.turn = true
-        this.drnos.x += 30
-        this.mario_xp_size--
-        this.mario_xp = this.mario_xp.substring(0, this.mario_xp_size);
-      }
-    }
+  
 
     for (let i = 0; i < this.mario.bullets.length; i++) {
       const KodrvacAlvards = this.alvards.filter(alvard => !this.mario.bullets[i].collidesWithAnmie(alvard))
@@ -629,13 +401,7 @@ class Game {
       }
       this.alvards = KodrvacAlvards
     }
-    for (let i = 0; i < this.mario.bullets.length; i++) {
-      if (this.mario.bullets[i].collidesWithAnmie(this.drnos) && this.mario_xp_size != 10 && this.drno_xp_size != 10) {
-        this.mario.bullets.splice(i, 1)
-        this.drno_xp_size--
-        this.drno_xp = this.drno_xp.substring(0, this.drno_xp_size)
-      }
-    }
+   
     for (let i = 0; i < this.mario.bullets.length; i++) {
 
       const KodrvacPolice = this.polices.filter(police => !this.mario.bullets[i].collidesWithAnmie(police))
@@ -652,10 +418,29 @@ class Game {
       }
       this.inteligent = KodrvacIntel
     }
-    if (this.mario.collidesWithAlvard(this.shusho)) {
-      this.shusho.y = -30000
-      this.mario.meeting = true
-      this.drno_xp_size = 0
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+
+      const KodrvacAlvards = this.alvards.filter(alvard => !this.mario.bulletsleft[i].collidesWithAnmie(alvard))
+      if (this.alvards.length - KodrvacAlvards.length) {
+        this.mario.bulletsleft.splice(i, 1)
+      }
+      this.alvards = KodrvacAlvards
+    }
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+    
+      const KodrvacPolice = this.polices.filter(police => !this.mario.bulletsleft[i].collidesWithAnmie(police))
+      if (this.polices.length - KodrvacPolice.length) {
+        this.mario.bulletsleft.splice(i, 1)
+      }
+      this.polices = KodrvacPolice
+    }
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+    
+      const KodrvacIntel = this.inteligent.filter(intel => !this.mario.bulletsleft[i].collidesWithAnmie(intel))
+      if (this.inteligent.length - KodrvacIntel.length) {
+        this.mario.bulletsleft.splice(i, 1)
+      }
+      this.inteligent = KodrvacIntel
     }
 
 

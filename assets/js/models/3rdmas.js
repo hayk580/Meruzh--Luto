@@ -25,7 +25,7 @@ class Game {
       level13: './assets/img/Baghramyan-01.png'
     }
     this.background = new Background(this.ctx, this.levels.level10)
-    this.bag = new Bag(this.ctx, 300, 500)
+    this.bag = new Bag(this.ctx, 300, this.canvas.height-500)                 
     this.shaurma = new Shaurma(this.ctx, this.bag.x + 20, this.bag.y - 20)
     this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
     this.alvardTati = new Alvard()
@@ -40,7 +40,7 @@ class Game {
 
     ]
 
-    this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 500, this.canvas.height - 200)
+    this.masiviBisetka = new Bisetka(this.ctx, OTHERS_WIDTH - 250, this.canvas.height - 200)
     this.inteligent = [
       new Inteligent(this.ctx, this.mario.x + 500, this.mario.y),
       new Inteligent(this.ctx, this.mario.x + 5700, this.mario.y),
@@ -146,17 +146,17 @@ class Game {
     }
   }
 
-  drowGreade(x, tmp) {
+  drowGreade(x, tmp) {                                         
     if (tmp == 1) {
       this.drawWall(x, 30, 1)
-      this.drawWall(x + 50, 50, 1)
-      this.drawWall(x + 100, 70, 1)
-      this.drawWall(x + 150, 90, 1)
-      this.drawWall(x + 200, 110, 1)
-      this.drawWall(x + (50 * 8), 30, 1)
-      this.drawWall(x + 50 + (50 * 6), 50, 1)
-      this.drawWall(x + 100 + (50 * 4), 70, 1)
-      this.drawWall(x + 150 + (50 * 2), 90, 1)
+      this.drawWall(x + 58, 50, 1)
+      this.drawWall(x + 116, 70, 1)
+      this.drawWall(x + 174, 90, 1)
+      this.drawWall(x + 232, 110, 1)
+      this.drawWall(x + (58 * 8), 30, 1)
+      this.drawWall(x + 58 + (58 * 6), 50, 1)
+      this.drawWall(x + 116 + (58 * 4), 70, 1)
+      this.drawWall(x + 174 + (58 * 2), 90, 1)
 
     }
     if (tmp == 2) {
@@ -171,31 +171,30 @@ class Game {
 
 
   drowCOIN(x) {
-    //this.drawCoin(x, 820, 1)
-    this.drawCoin(-10, 820, 1)
-    this.drawCoin(890, 820, 1)
-    this.drawCoin(3600, 600, 2)
-    this.drawCoin(4050, 600, 2)
-    this.drawCoin(4390, 820, 1)
-    this.drawCoin(6100, 600, 2)
-    this.drawCoin(6890, 820, 1)
-    this.drawCoin(8100, 600, 2)
-    this.drawCoin(8590, 820, 1)
-    this.drawCoin(9500, 600, 2)
-    this.drawCoin(10090, 820, 1)
-    this.drawCoin(11000, 600, 2)
-    this.drawCoin(11490, 820, 1)
-    this.drawCoin(12600, 600, 2)
-    this.drawCoin(13200, 600, 2)
-    this.drawCoin(13590, 820, 1)
-    this.drawCoin(14600, 600, 2)
-    this.drawCoin(15700, 600, 2)
-    this.drawCoin(15990, 820, 1)
-    this.drawCoin(17190, 820, 1)
-    this.drawCoin(18100, 600, 2)
-    this.drawCoin(18490, 820, 1)
-    this.drawCoin(19390, 820, 1)
-    this.drawCoin(20300, 600, 2)
+    this.drawCoin(-10, this.canvas.height - 300, 1)
+    this.drawCoin(890, this.canvas.height - 300, 1)
+    this.drawCoin(3600, this.canvas.height - 250, 2)
+    this.drawCoin(4050, this.canvas.height - 250, 2)
+    this.drawCoin(4390, this.canvas.height - 300, 1)
+    this.drawCoin(6100, this.canvas.height - 250, 2)
+    this.drawCoin(6890, this.canvas.height - 300, 1)
+    this.drawCoin(8100, this.canvas.height - 250, 2)
+    this.drawCoin(8590, this.canvas.height - 300, 1)
+    this.drawCoin(9500, this.canvas.height - 250, 2)
+    this.drawCoin(10090, this.canvas.height - 300, 1)
+    this.drawCoin(11000, this.canvas.height - 250, 2)
+    this.drawCoin(11490, this.canvas.height - 300, 1)
+    this.drawCoin(12600, this.canvas.height - 250, 2)
+    this.drawCoin(13200, this.canvas.height - 250, 2)
+    this.drawCoin(13590, this.canvas.height - 300, 1)
+    this.drawCoin(14600, this.canvas.height - 250, 2)
+    this.drawCoin(15700, this.canvas.height - 250, 2)
+    this.drawCoin(15990, this.canvas.height - 300, 1)
+    this.drawCoin(17190, this.canvas.height - 300, 1)
+    this.drawCoin(18100, this.canvas.height - 250, 2)
+    this.drawCoin(18490, this.canvas.height - 300, 1)
+    this.drawCoin(19390, this.canvas.height - 300, 1)
+    this.drawCoin(20300, this.canvas.height - 250, 2)
 
   }
 
@@ -299,12 +298,11 @@ class Game {
     this.ctx.font = '18px Arial'
     this.ctx.fillText(`միավորներ: ${this.points}`, 30, 25)
     this.ctx.fillText(`բիչոկներ: ${this.mario.bichokcount}`, 30, 50)
-    //this.ctx.fillText(`ճշտի բալանս: ${sessionStorage.getItem('tuxtcount')}`, 30, 75)
     this.ctx.restore()
   }
 
   move() {
-    if (this.mario.x === this.mario.maxX && this.mario.isDie == false) {
+    if (this.mario.x === this.mario.maxX && this.mario.isDie == false && this.mario.let_move) { 
       this.background.move()
       this.coins.forEach(coins => coins.move())
       this.alvards.forEach(alvards => alvards.stop = false)
@@ -328,6 +326,7 @@ class Game {
       this.papers.forEach(papers => papers.move(this.mario.x))
       this.kims.forEach(kim => kim.move())
       this.bag.move()
+      this.shaurma.moveRight()                                 
       this.masiviBisetka.move(this.mario.x)
     }
     this.mario.move()
@@ -380,6 +379,30 @@ class Game {
       }
       this.inteligent = KodrvacIntel
     }
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+
+      const KodrvacAlvards = this.alvards.filter(alvard => !this.mario.bulletsleft[i].collidesWithAnmie(alvard))
+      if (this.alvards.length - KodrvacAlvards.length) {
+        this.mario.bulletsleft.splice(i, 1)
+      }
+      this.alvards = KodrvacAlvards
+    }
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+    
+      const KodrvacPolice = this.polices.filter(police => !this.mario.bulletsleft[i].collidesWithAnmie(police))
+      if (this.polices.length - KodrvacPolice.length) {
+        this.mario.bulletsleft.splice(i, 1)
+      }
+      this.polices = KodrvacPolice
+    }
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+    
+      const KodrvacIntel = this.inteligent.filter(intel => !this.mario.bulletsleft[i].collidesWithAnmie(intel))
+      if (this.inteligent.length - KodrvacIntel.length) {
+        this.mario.bulletsleft.splice(i, 1)
+      }
+      this.inteligent = KodrvacIntel
+    }
 
     if (this.drow) {
       this.drow = false
@@ -408,9 +431,9 @@ class Game {
       this.drowGreade(19500, 1)
       this.drowGreade(20200, 2)
 
-      for (let i = 500; i < 10000; i += 800) {
-        this.drowCOIN(i);
-      }
+    
+        this.drowCOIN();
+      
     }
 
 
@@ -566,8 +589,11 @@ class Game {
 
 
 
-    if (this.mario.x >= this.masiviBisetka.x) {
-      this.mario.movements.down = true
+    if (this.mario.x -20 >= this.masiviBisetka.x) {
+      this.mario.let_move=false                      
+      this.mario.sprite.verticalFrameIndex = 1
+      this.mario.sprite.horizontalFrameIndex = 2
+     
       setTimeout(() => {
         window.location.replace('./index11.html')
 
@@ -579,7 +605,7 @@ class Game {
 
     this.blocks.map(el => {
       const x = this.mario.collidesWithBlocks(el)
-      if (x && !this.mario.isDie) {
+      if (x && !this.mario.isDie) {                            
         this.mario.y = el.y - 116;
         if (this.mario.y == el.y - 116) {
           this.mario.isJumping = false

@@ -35,7 +35,7 @@ class Game {
     this.nextLevel = undefined
     this.paperAnimation = undefined
     this.paperPoints = 0
-    this.bag = new Bag(this.ctx, 7300, 700)
+    this.bag = new Bag(this.ctx, 7300, this.canvas.height- 550)
     this.shaurma = new Shaurma(this.ctx, this.bag.x, this.bag.y - 20)
     this.coins = [
 
@@ -129,19 +129,18 @@ class Game {
 
     }
   }
-
-  drowGreade(x, tmp) {
+  drowGreade(x, tmp) {                                         
     if (tmp == 1) {
       this.drawWall(x, 30, 1)
-      this.drawWall(x + 50, 50, 1)
-      this.drawWall(x + 100, 70, 1)
-      this.drawWall(x + 150, 90, 1)
-      this.drawWall(x + 200, 110, 1)
-      this.drawWall(x + (50 * 8), 30, 1)
-      this.drawWall(x + 50 + (50 * 6), 50, 1)
-      this.drawWall(x + 100 + (50 * 4), 70, 1)
-      this.drawWall(x + 150 + (50 * 2), 90, 1)
-      //this.drawWall(x + 80, 400, 15)
+      this.drawWall(x + 58, 50, 1)
+      this.drawWall(x + 116, 70, 1)
+      this.drawWall(x + 174, 90, 1)
+      this.drawWall(x + 232, 110, 1)
+      this.drawWall(x + (58 * 8), 30, 1)
+      this.drawWall(x + 58 + (58 * 6), 50, 1)
+      this.drawWall(x + 116 + (58 * 4), 70, 1)
+      this.drawWall(x + 174 + (58 * 2), 90, 1)
+
     }
     if (tmp == 2) {
       this.drawWall(x, 30, 10)
@@ -155,8 +154,8 @@ class Game {
 
 
   drowCOIN(x) {
-    this.drawCoin(x, 800, 1)
-    this.drawCoin(x + 1000, 750, 2)
+    this.drawCoin(x, this.canvas.height - 370, 1)
+    this.drawCoin(x + 1000, this.canvas.height - 321, 2)
     this.drawCoin(x + 1500, 800, 1)
     this.drawCoin(x + 3000, 750, 2)
   }
@@ -219,7 +218,7 @@ class Game {
 
     this.background.draw()
     this.kims.forEach(kims => kims.draw())
-    this.mario.draw()
+    
     if (this.bag.flag) {
       this.bag.draw()
     }
@@ -242,7 +241,7 @@ class Game {
     })
     this.polices.forEach(polices => polices.draw())
     this.pointsCoin.draw()
-    // this.alvards.forEach(alvards => alvards.move()) 
+    this.mario.draw()
     this.masiviBisetka.draw()
     this.papers.forEach(paper => paper.draw())
     this.ctx.save()
@@ -253,7 +252,7 @@ class Game {
   }
 
   move() {
-    if (this.mario.x === this.mario.maxX && this.mario.isDie == false) {
+    if (this.mario.x === this.mario.maxX && this.mario.isDie == false && this.mario.let_move) {
       this.background.move()
       this.coins.forEach(coins => coins.move())
       this.alvards.forEach(alvards => alvards.stop = false)
@@ -276,7 +275,7 @@ class Game {
       this.papers.forEach(papers => papers.move(this.mario.x))
       this.kims.forEach(kim => kim.move())
       this.bag.move()
-      this.shaurma.moveright()
+      this.shaurma.moveRight()
       this.masiviBisetka.move(this.mario.x)
     }
     this.mario.move()
@@ -359,7 +358,30 @@ class Game {
       this.inteligent = KodrvacIntel
     }
 
+for (let i = 0; i < this.mario.bulletsleft.length; i++) {
 
+  const KodrvacAlvards = this.alvards.filter(alvard => !this.mario.bulletsleft[i].collidesWithAnmie(alvard))
+  if (this.alvards.length - KodrvacAlvards.length) {
+    this.mario.bulletsleft.splice(i, 1)
+  }
+  this.alvards = KodrvacAlvards
+}
+for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+
+  const KodrvacPolice = this.polices.filter(police => !this.mario.bulletsleft[i].collidesWithAnmie(police))
+  if (this.polices.length - KodrvacPolice.length) {
+    this.mario.bulletsleft.splice(i, 1)
+  }
+  this.polices = KodrvacPolice
+}
+for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+
+  const KodrvacIntel = this.inteligent.filter(intel => !this.mario.bulletsleft[i].collidesWithAnmie(intel))
+  if (this.inteligent.length - KodrvacIntel.length) {
+    this.mario.bulletsleft.splice(i, 1)
+  }
+  this.inteligent = KodrvacIntel
+}
 
 
     if (this.mario.collidesWithShaurma(this.shaurma)) {
@@ -506,8 +528,10 @@ class Game {
     //this.kims = restKim
 
 
-    if (this.mario.x >= this.masiviBisetka.x) {
-      this.mario.movements.down = true
+    if (this.mario.x -20 >= this.masiviBisetka.x) {
+      this.mario.let_move=false                      
+      this.mario.sprite.verticalFrameIndex = 1
+      this.mario.sprite.horizontalFrameIndex = 2
       setTimeout(() => {
         window.location.replace('./index8.html')
 
@@ -522,7 +546,7 @@ class Game {
 
       const x = this.mario.collidesWithBlocks(el)
 
-      if (x) {
+      if (x && !this.mario.isDie) {
 
 
         this.mario.y = el.y - 116;

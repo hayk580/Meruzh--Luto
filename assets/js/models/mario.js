@@ -6,7 +6,7 @@ class Mario {
     this.minX = 0
     this.maxX = this.ctx.canvas.width / 2
     this.vx = 0
-
+    this.underblock = false // avel
     this.tuxtcount = 0
     this.y = y
     this.maxY = y
@@ -17,6 +17,7 @@ class Mario {
     this.turn = true
     this.bichokcount = 20
     this.meeting = false
+    this.let_move=true                            //avelacnel bisetkum ansharjanl
 
     this.sprite = new Image()
     if (this.flag == 1) { this.sprite.src = './assets/img/l1.png' }
@@ -57,7 +58,7 @@ class Mario {
     this.canFire = true
 
     this.bullets = []
-
+    this.bulletsleft = [] //avel
     this.sounds = {
       fire: new Audio('./assets/sound/fireball.wav'),
       love: new Audio('./assets/sound/love.mp3'),
@@ -74,6 +75,8 @@ class Mario {
 
   clear() {
     this.bullets = this.bullets.filter(bullet => bullet.x <= this.ctx.canvas.width)
+    this.bulletsleft = this.bullets.filter(bullet => bullet.x <= this.ctx.canvas.width) //avel
+
   }
 
   draw() {
@@ -146,6 +149,8 @@ this.sounds.themMusic.play()
 
       this.sprite.drawCount++
       this.bullets.forEach(bullet => bullet.draw())
+      this.bulletsleft.forEach(bullet => bullet.draw())
+
       this.animate()
     }
   }
@@ -168,7 +173,12 @@ this.sounds.themMusic.play()
         break;
       case KEY_FIRE:
         if (this.canFire && this.bichokcount > 0 && this.isDie == false && this.flag != 0) {
-          this.bullets.push(new Fireball(this.ctx, this.x + this.width, this.y, this.maxY + this.height))
+          if(this.turn){
+            this.bullets.push(new Fireball(this.ctx, this.x + this.width, this.y, this.maxY + this.height)) 
+          }
+          else {
+            this.bulletsleft.push(new Fireball(this.ctx, this.x, this.y, this.maxY + this.height))
+          }
           this.sounds.fire.currentTime = 0
           this.sounds.fire.play()
           this.canFire = false
@@ -183,16 +193,20 @@ this.sounds.themMusic.play()
     }
   }
 
+
   move() {
     this.bullets.forEach(bullet => bullet.move())
-
+    this.bulletsleft.forEach(bullet => bullet.moveleft())
+   
+if (this.let_move)                                           //avelacnel bisetkum ansharjanal
+{
     
-    if (this.movements.up && !this.isJumping) {
+    if (this.movements.up && !this.isJumping ) {
       this.isJumping = true
-      this.vy = -9
+      this.vy = -21
 
-
-    } else if (this.isJumping) {
+    } 
+    else if (this.isJumping) {
       this.vy += GRAVITY
     }
 
@@ -240,9 +254,11 @@ this.sounds.themMusic.play()
       this.y = this.maxY
       this.vy = 0
     }
-
+    if(this.y <= 230) {
+      this.vy *= -1
+    }
   }
-
+  }
   animate() {
     if (this.isJumping && !this.movements.right && !this.movements.left && this.isDie == false) {
       this.animateJump()
@@ -391,8 +407,15 @@ this.sounds.themMusic.play()
 
   }
   collidesWithUnderBlocks(el) {
-    return this.x >= el.x - el.width - 5 &&
-      this.x <= el.x && this.y > 330 && this.y < 360
+        if((this.x >= el.x - el.width &&
+         this.x <= el.x + el.width  && this.y > el.y)) {
+          this.underblock = true
+         }
+         else {
+          this.underblock = false
+         }
+         return ((this.x >= el.x - el.width &&
+          this.x <= el.x + el.width/2  && this.y > el.y))
   }
 
   collidesWithBag(element) {

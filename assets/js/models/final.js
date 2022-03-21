@@ -6,7 +6,6 @@ class Game {
     this.ctx = this.canvas.getContext('2d')
     this.drow = true
     this.fps = 1040 / 60
-    // this.drawInterval = undefinedthis.shaurmacount = 1
     this.answer_x = 350
     this.answer_y = 1000
     this.mario_xp_size = 10
@@ -18,6 +17,7 @@ class Game {
     this.drno_die_count = 1
     this.drno_die = false
     this.took = false
+    this.firecount=1
     this.is_true_answer = true
     this.levels = {
       level1: './assets/img/masiv.png',
@@ -85,7 +85,7 @@ class Game {
     ]
     this.background = new Background(this.ctx, this.levels.level14)
     this.mario = new Mario(this.ctx, 50, this.canvas.height - 120)
-
+    this.mario.canFire=false    
     this.nextLevel = undefined
     this.drno = new Drno()
     this.shusho = new Shushan(this.ctx, this.canvas.width - 200, this.canvas.height - 100)
@@ -115,7 +115,6 @@ class Game {
       theme2,
       die: new Audio('./assets/sound/die.mp3'),
       took_sound: new Audio('./assets/sound/spit.mp3'),
-      drno_trvr: new Audio('./assets/sound/Monster.mp3'),
       chisht: new Audio('./assets/sound/HumanCrowd.wav'),
       sxal: new Audio('./assets/sound/CrowdReaction.wav'),
       house: new Audio('./assets/sound/Halloween.wav'),
@@ -151,13 +150,13 @@ class Game {
 
         if (this.drno_die == false && this.answer_count == 0 && !this.mario.isDie) {
           this.drnos.fight_move(this.mario, this.canvas.height - 100)
-          this.sounds.drno_trvr.play()
-          //this.sounds.drno_trvr.currentTime = 0
+         
         }
-
+       
         if (this.drno_die) {
           this.drnos.finish_move()
         }
+       
       }, this.fps);
     }
   }
@@ -250,7 +249,7 @@ class Game {
       this.mario.animateDie()
     }
 
-    else if (this.drno_xp_size == 0) {
+    else if (this.drno_xp_size <= 0) {
       this.drno_die = true
       this.drnos.die = true
       if (this.drno_die_count == 1) {
@@ -334,6 +333,15 @@ class Game {
 
   checkCollisions() {
 
+
+     if (this.answer_count==0 && !this.drno_die && this.firecount==1)
+        {
+         
+            this.mario.canFire = true
+            this.firecount=0
+         
+        }
+
     if (this.mario_xp_size != 10 && this.drno_xp_size != 10) {
       if (this.mario.collidesWithAlvard(this.drnos)) {
         this.drnos.turn = true
@@ -350,7 +358,13 @@ class Game {
         this.drno_xp = this.drno_xp.substring(0, this.drno_xp_size)
       }
     }
-
+    for (let i = 0; i < this.mario.bulletsleft.length; i++) {
+      if (this.mario.bulletsleft[i].collidesWithAnmie(this.drnos) && this.mario_xp_size != 10 && this.drno_xp_size != 10) {
+        this.mario.bulletsleft.splice(i, 1)
+        this.drno_xp_size--
+        this.drno_xp = this.drno_xp.substring(0, this.drno_xp_size)
+      }
+    }
     if (this.mario.collidesWithAlvard(this.shusho)) {
       this.shusho.y = -30000
       this.mario.meeting = true
