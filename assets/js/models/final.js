@@ -343,7 +343,8 @@ class Game {
         }
 
     if (this.mario_xp_size != 10 && this.drno_xp_size != 10) {
-      if (this.mario.collidesWithAlvard(this.drnos)) {
+      if (this.mario.collidesWithAlvard(this.drnos) && this.drno_xp_size > 0) {
+        
         this.drnos.turn = true
         this.drnos.x += 30
         this.mario_xp_size--
