@@ -230,13 +230,13 @@ class Game {
           }
         })
         this.alvards.forEach(alvard => {
-          if ((alvard.x - this.mario.x) < 3000) {
+          if ((alvard.x - this.mario.x) < this.canvas.width) {
             alvard.move()
 
           }
         })
         this.polices.forEach(police => {
-          if ((police.x - this.mario.x) < 3000) { police.move() }
+          if ((police.x - this.mario.x) < this.canvas.width) { police.move() }
         })
         this.papers.forEach(paper => paper.move())
       }, this.fps);

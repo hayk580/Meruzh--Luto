@@ -391,9 +391,9 @@ if (this.let_move)                                           //avelacnel bisetku
   }
 
   HeadJump(element) {
-    return this.x + this.width < element.x + element.width + 20 &&
-      this.x > element.x - 20 &&
-      this.y + this.height < element.y + 20
+    return this.x + this.width < element.x + element.width + 45 &&
+      this.x > element.x - 45 &&
+      this.y + this.height < element.y + 25
       && this.y + this.height > element.y
 
   }
