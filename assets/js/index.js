@@ -9,10 +9,16 @@ window.onload = () => {
     game.onKeyEvent(event)
   })
 
+
+if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+{
+  return "at the moment the game is not supported on mobile devices"
+}
+else {
+  game.start()
 }
 
-  game.start()
-
+}
 
 
 
