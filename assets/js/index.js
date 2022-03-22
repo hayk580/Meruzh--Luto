@@ -11,10 +11,6 @@ window.onload = () => {
 
 }
 
-if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
-{
-  return "at the moment the game is not supported on mobile devices"
-}
   game.start()
 
 
