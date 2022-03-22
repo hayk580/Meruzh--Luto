@@ -50,49 +50,13 @@ class Game {
 
     this.alvards = [
 
-      new Alvard(this.ctx, this.mario.x + 500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 1700, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 1900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 2100, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 2300, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 2500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 3500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 4900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 5100, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 6900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 7500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 8900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 9500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 10900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 11500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 12700, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 13900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 14100, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 15900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 16500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 16900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 17500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 18200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 19500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 19900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 20500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 21200, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 21500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 22900, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 23500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 24200, this.mario.y),
+      
     ]
 
 
 
     this.polices = [
-      new Police(this.ctx, this.mario.x + 1804, this.mario.y),
-      new Police(this.ctx, this.mario.x + 3700, this.mario.y),
-      new Police(this.ctx, this.mario.x + 6322, this.mario.y),
-      new Police(this.ctx, this.mario.x + 8722, this.mario.y),
-      new Police(this.ctx, this.mario.x + 13422, this.mario.y),
-      new Police(this.ctx, this.mario.x + 17234, this.mario.y),
+      
     ]
 
 
@@ -449,6 +413,37 @@ class Game {
 
     }
 
+    if(this.alvards.length == 0) {
+        this.alvards.push(
+            new Alvard(this.ctx, this.canvas.width + 200, this.canvas.height - 120),
+            new Alvard(this.ctx, this.canvas.width + 400, this.canvas.height - 120),
+            new Alvard(this.ctx, this.canvas.width + 670, this.canvas.height - 120),
+            )
+    }
+
+    this.alvards.forEach(alvard => {
+        
+        if(alvard.x < 0) {
+            this.alvards.shift()
+            this.alvards.push(new Alvard(this.ctx, this.canvas.width + 200, this.canvas.height - 120))
+            console.log(this.alvards)
+        }
+    })
+
+    if(this.polices.length == 0) {
+        this.polices.push(
+            new Police(this.ctx, this.canvas.width + 1200, this.canvas.height - 120)
+            )
+    }
+
+    this.polices.forEach(police => {
+        
+        if(police.x < 0) {
+            this.polices.shift()
+            this.polices.push(new Police(this.ctx, this.canvas.width + 1200, this.canvas.height - 120))
+            console.log(this.polices)
+        }
+    })
 
     const restCoins = this.coins.filter(coin => !this.mario.collidesWith(coin))
 

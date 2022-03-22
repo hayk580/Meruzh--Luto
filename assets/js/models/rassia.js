@@ -51,35 +51,9 @@ class Game {
       new Inteligent(this.ctx, this.mario.x + 12100, this.mario.y),
     ]
 
-    this.alvards = [
+    this.alvards = []
 
-      new Alvard(this.ctx, this.mario.x + 2004, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 3312, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 5317, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 6800, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 8500, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 10520, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 12531, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 14531, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 19531, this.mario.y),
-      new Alvard(this.ctx, this.mario.x + 24531, this.mario.y),
-
-
-    ]
-
-    this.polices = [
-      new Police(this.ctx, this.mario.x + 2304, this.mario.y),
-      new Police(this.ctx, this.mario.x + 3700, this.mario.y),
-      new Police(this.ctx, this.mario.x + 5622, this.mario.y),
-      new Police(this.ctx, this.mario.x + 7922, this.mario.y),
-      new Police(this.ctx, this.mario.x + 11422, this.mario.y),
-      new Police(this.ctx, this.mario.x + 13222, this.mario.y),
-      new Police(this.ctx, this.mario.x + 17222, this.mario.y),
-      new Police(this.ctx, this.mario.x + 18322, this.mario.y),
-      new Police(this.ctx, this.mario.x + 19422, this.mario.y),
-      new Police(this.ctx, this.mario.x + 20222, this.mario.y),
-      new Police(this.ctx, this.mario.x + 23322, this.mario.y),
-    ]
+    this.polices = []
 
 
     this.kims = [
@@ -398,6 +372,37 @@ for (let i = 0; i < this.mario.bulletsleft.length; i++) {
       }
 
     }
+
+    if(this.alvards.length == 0) {
+        this.alvards.push(
+            new Alvard(this.ctx, this.canvas.width + 322, this.canvas.height - 120),
+            new Alvard(this.ctx, this.canvas.width + 780, this.canvas.height - 120),
+            new Alvard(this.ctx, this.canvas.width + 1170, this.canvas.height - 120),
+            )
+    }
+
+    this.alvards.forEach(alvard => {
+        
+        if(alvard.x < 0) {
+            this.alvards.shift()
+            this.alvards.push(new Alvard(this.ctx, this.canvas.width + 200, this.canvas.height - 120))
+            console.log(this.alvards)
+        }
+    })
+
+    if(this.polices.length == 0) {
+        this.polices.push(
+            new Police(this.ctx, this.canvas.width + 1200, this.canvas.height - 120)
+            )
+    }
+
+    this.polices.forEach(police => {
+        
+        if(police.x < 0) {
+            this.polices.shift()
+            this.polices.push(new Police(this.ctx, this.canvas.width + 1200, this.canvas.height - 120))
+        }
+    })
 
 
     const restCoins = this.coins.filter(coin => !this.mario.collidesWith(coin))
