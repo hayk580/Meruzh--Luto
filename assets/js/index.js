@@ -8,8 +8,8 @@ window.onload = () => {
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
   
+  window.location.href= "./sorry.html"
 
-    alert( "The game is currently not supported on mobile devices")
  
  }
  else 
