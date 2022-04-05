@@ -1,4 +1,19 @@
+
+
+
+
+
+
 window.onload = () => {
+
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  
+
+    alert( "The game is currently not supported on mobile devices")
+ 
+ }
+ else 
+{ 
   const game = new Game('game-canvas');
 
   document.addEventListener('keydown', (event) => {
@@ -9,8 +24,13 @@ window.onload = () => {
     game.onKeyEvent(event)
   })
 
+  if(window.performance)
+  {
   game.start()
+  }
 
+
+}
 
 }
 

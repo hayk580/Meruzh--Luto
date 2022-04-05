@@ -414,7 +414,7 @@ class Game {
         if(police.x < 0) {
             this.polices.shift()
             this.polices.push(new Police(this.ctx, this.canvas.width + 340, this.canvas.height - 380))
-            console.log(this.polices)
+             
         }
     })
 
