@@ -85,8 +85,18 @@
 </body>
 </html>
 <style>
+
+
+
   @charset "UTF-8";
-.js-auto-slider-wrap {
+
+body{ 
+
+	background-image: url('./assets/img/bg-1.png');
+	background-size: cover;
+}
+
+  .js-auto-slider-wrap {
   overflow: hidden;
 }
 .js-auto-slider {
@@ -106,12 +116,11 @@
   bottom: 0;
 }
 .js-auto-slider-img img {
-  position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
-  object-fit: cover;
+  /* width: 100%; */
+  object-fit: revert;
 }
 
 
@@ -121,7 +130,7 @@
 }
 .js-auto-slider-elm {
   height: 50vw;
-  width: 76vw;
+  width: 100%;
   margin-right: 4.8vw;
   border-radius: 3.3vw;
 }
@@ -129,7 +138,7 @@
   .js-auto-slider-inner {
   }
   .js-auto-slider-elm {
-    /* height: 30vw; */
+    /* height: 50vw; */
     width: 50vw;
     margin-right: 5vw;
     border-radius: 1.5vw;
